@@ -72,6 +72,9 @@
     <Reference Include="MonoGame.Framework.MacOS">
       <HintPath>..\..\..\..\..\..\Applications\MonoDevelop.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MonoGame\MonoGame.Framework.MacOS.dll</HintPath>
     </Reference>
+    <Reference Include="Songbugs.Lib">
+      <HintPath>..\Songbugs.Lib\bin\Debug\Songbugs.Lib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Songbugs.HostGame.cs" />
