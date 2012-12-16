@@ -9,6 +9,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Songbugs.Lib</RootNamespace>
     <AssemblyName>Songbugs.Lib</AssemblyName>
+    <BuildOrder>
+      <BuildOrder>
+        <String>AssemblyInfo.fs</String>
+        <String>IGameObject.fs</String>
+        <String>TitleImage.fs</String>
+        <String>Game.fs</String>
+      </BuildOrder>
+    </BuildOrder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
