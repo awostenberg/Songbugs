@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +21,17 @@ namespace Songbugs.Host {
     }
 
     class AppDelegate : NSApplicationDelegate {
-        SBGame game;
-
+        Songbugs.Lib.Game game;
+        
         public override void FinishedLaunching(MonoMac.Foundation.NSObject notification) {
-            game = new SBGame();
+            game = new Songbugs.Lib.Game();
             game.Run();
         }
     
         public override bool ApplicationShouldTerminateAfterLastWindowClosed(NSApplication sender) {
             return true;
         }
-    }  
+    }
 }
 
 
