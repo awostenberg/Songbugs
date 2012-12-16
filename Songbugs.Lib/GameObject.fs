@@ -3,10 +3,10 @@ open Microsoft.Xna.Framework
 
 type IGameObject =
   
-  abstract member Initialize : unit -> unit default this.Initialize () = ()
+  abstract member Initialize : unit -> unit
   
-  abstract member LoadContent : unit -> unit default this.LoadContent () = ()
+  abstract member LoadContent : unit -> unit
   
-  abstract member Update : GameTime -> unit default this.Update _ = ()
+  abstract member Update : GameTime -> unit
   
-  abstract member Draw : GameTime -> unit default this.Draw _ = ()
+  abstract member Draw : GameTime -> unit
