@@ -1,10 +1,10 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
-type Game () as this =
+type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
-  member val Graphics = new GraphicsDeviceManager (this) with get, set
+  member val Graphics = new GraphicsDeviceManager(this) with get, set
   
   override this.Initialize () =
     this.Content.RootDirectory <- "../Resources"
@@ -14,4 +14,4 @@ type Game () as this =
     base.Initialize ()
   
   override this.Draw _ =
-    this.GraphicsDevice.Clear (Color.Black)
+    this.GraphicsDevice.Clear Color.Black
