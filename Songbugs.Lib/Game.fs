@@ -1,14 +1,17 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
-type Game() =
+type Game() as this =
   inherit Microsoft.Xna.Framework.Game()
   
-  let mutable graphics : GraphicsDeviceManager = null
+  member val Graphics = new GraphicsDeviceManager(this) with get, set
   
   override this.Initialize() =
     this.Content.RootDirectory <- "../Resources"
-    graphics <- new GraphicsDeviceManager(this)
-    graphics.IsFullScreen <- false
+    this.Graphics.IsFullScreen <- false
+    this.IsMouseVisible <- true
     
     base.Initialize()
+  
+  override this.Draw(_) =
+    this.GraphicsDevice.Clear(Color.Black)
