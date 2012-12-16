@@ -83,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="Content\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
@@ -92,5 +91,8 @@
       <Project>{86786EED-ADF9-4DC2-936F-7552507CADA9}</Project>
       <Name>Songbugs.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Media\logo.png" />
   </ItemGroup>
 </Project>
