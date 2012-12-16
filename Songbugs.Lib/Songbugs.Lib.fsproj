@@ -34,6 +34,15 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\..\..\..\..\Applications\MonoDevelop.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MonoGame\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoDevelop.MonoGame">
+      <HintPath>..\..\..\..\..\..\Applications\MonoDevelop.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MonoGame\MonoDevelop.MonoGame.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMac">
+      <HintPath>..\..\..\..\..\..\Applications\MonoDevelop.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MonoGame\MonoMac.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
