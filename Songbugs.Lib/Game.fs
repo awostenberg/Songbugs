@@ -18,4 +18,4 @@ type Game() as this =
   
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.Black
-    (title :> IGameObject).Draw gameTime
+    title.Draw gameTime
