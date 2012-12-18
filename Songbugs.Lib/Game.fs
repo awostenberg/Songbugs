@@ -18,6 +18,8 @@ type Game() as this =
   
   override this.LoadContent () = alignment.LoadContent ()
   
+  override this.Update gameTime = alignment.Update gameTime
+  
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.Black
     alignment.Draw gameTime
