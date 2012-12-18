@@ -2,8 +2,8 @@ namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
 // Used to order objects on the screen with "slots"
-type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : GameObject [,]) =
-  inherit GameObject()
+type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : Positional [,]) =
+  inherit Positional()
   
   let elementsDo action = Array2D.iter action elements
   
@@ -25,6 +25,9 @@ type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : Game
   
   override this.LoadContent () = elementsDo (fun obj -> obj.LoadContent ())
   
-  override this.Update gameTime = elementsDo (fun obj -> obj.Update gameTime)
+  override this.Update gameTime =
+    elementsDo (fun obj ->
+      obj.Update gameTime
+      obj.Position <- new Vector2(100.0f, 150.0f))
   
   override this.Draw gameTime = elementsDo (fun obj -> obj.Draw gameTime)
