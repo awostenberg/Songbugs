@@ -13,6 +13,7 @@
       <BuildOrder>
         <String>AssemblyInfo.fs</String>
         <String>GameObject.fs</String>
+        <String>Alignment.fs</String>
         <String>TitleImage.fs</String>
         <String>Game.fs</String>
       </BuildOrder>
@@ -57,6 +58,7 @@
     <Compile Include="Game.fs" />
     <Compile Include="TitleImage.fs" />
     <Compile Include="GameObject.fs" />
+    <Compile Include="Alignment.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
 </Project>
