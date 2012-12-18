@@ -5,7 +5,6 @@ type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
   let alignment = new Alignment(1, 1)
-  //let mutable title : TitleImage = null
   
   member val Graphics = new GraphicsDeviceManager(this) with get, set
   

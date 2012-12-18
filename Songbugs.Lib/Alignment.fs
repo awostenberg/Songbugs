@@ -7,7 +7,7 @@ type Alignment(width: int, height : int, elements : GameObject [,]) =
   
   let elementsDo action = Array2D.iter action elements
   
-  new(width, height) = Alignment(width, height, Array2D.zeroCreate 0 0)
+  new(width, height) = Alignment(width, height, Array2D.zeroCreate width height)
   
   // Not in terms of pixels, but slots
   member val Width = width with get, set
