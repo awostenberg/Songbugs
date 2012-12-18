@@ -1,13 +1,16 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
-// Used to order objects on the screen with "slots".
-type Alignment(slots : int * int, elements : GameObject [,]) =
+// Used to order objects on the screen with "slots"
+type Alignment(width: int, height : int, elements : GameObject [,]) =
   inherit GameObject()
   
-  new(slots) = Alignment(slots, Array2D.zeroCreate 0 0)
+  new(width, height) = Alignment(width, height, Array2D.zeroCreate 0 0)
   
-  member val Slots = slots with get, set
+  // Not in terms of pixels, but slots
+  member val Width = width with get, set
+  // Not in terms of pixels, but slots
+  member val Height = height with get, set
   member val Elements = elements with get, set
   
   override this.Draw gameTime =
