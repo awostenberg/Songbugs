@@ -9,12 +9,12 @@ type TitleImage(game : Game) =
   
   let spriteBatch = new SpriteBatch(game.GraphicsDevice)
   let mutable image : Texture2D = null
-  let scale = 1.0f
+  let scale = 4.0f
   
   override this.LoadContent () =
     image <- game.Content.Load "title.png"
   
   override this.Draw _ =
-    spriteBatch.Begin ()
+    spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise)
     if not (image = null) then spriteBatch.Draw (image, Vector2.Zero, new Nullable<Rectangle>(), Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f)
     spriteBatch.End ()
