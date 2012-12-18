@@ -16,5 +16,5 @@ type TitleImage(game : Game) =
   
   override this.Draw _ =
     spriteBatch.Begin (SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise)
-    if not (image = null) then spriteBatch.Draw (image, position, new Nullable<Rectangle>(), Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f)
+    if not (image = null) then spriteBatch.Draw (image, this.Position, new Nullable<Rectangle>(), Color.White, 0.0f, Vector2.Zero, scale, SpriteEffects.None, 0.0f)
     spriteBatch.End ()
