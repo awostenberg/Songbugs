@@ -8,8 +8,8 @@ type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : Game
   let elementsDo action = Array2D.iter action elements
   
   new(slotWidth, slotHeight, size) = Alignment(slotWidth, slotHeight, size, Array2D.zeroCreate slotWidth slotHeight)
-  
-  new() = Alignment(1, 1, Vector2.Zero)
+  new(slotWidth, slotHeight) = Alignment(slotWidth, slotHeight, Vector2.Zero)
+  new() = Alignment(1, 1)
   
   // Not in terms of pixels, but slots
   member val SlotWidth = slotWidth with get, set
