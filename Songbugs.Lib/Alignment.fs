@@ -5,6 +5,8 @@ open Microsoft.Xna.Framework
 type Alignment(width: int, height : int, elements : GameObject [,]) =
   inherit GameObject()
   
+  let elementsDo action = Array2D.iter action elements
+  
   new(width, height) = Alignment(width, height, Array2D.zeroCreate 0 0)
   
   // Not in terms of pixels, but slots
@@ -15,5 +17,10 @@ type Alignment(width: int, height : int, elements : GameObject [,]) =
   
   member this.Add elem x y = Array2D.set elements x y elem
   
-  override this.Draw gameTime =
-    Array2D.iter (fun (obj : GameObject) -> obj.Draw gameTime) elements
+  override this.Initialize () = elementsDo (fun obj -> obj.Initialize ())
+  
+  override this.LoadContent () = elementsDo (fun obj -> obj.LoadContent ())
+  
+  override this.Update gameTime = elementsDo (fun obj -> obj.Update gameTime)
+  
+  override this.Draw gameTime = elementsDo (fun obj -> obj.Draw gameTime)
