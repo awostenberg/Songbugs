@@ -15,9 +15,9 @@ type GameObject() =
 type Positional() =
   inherit GameObject()
   
-  let mutable _position = Vector2.Zero
+  let mutable position = Vector2.Zero
   
   abstract Position : Vector2 with get, set
   override this.Position
-    with get() = _position
-    and set(v) = _position <- v
+    with get() = position
+    and set(v) = position <- v
