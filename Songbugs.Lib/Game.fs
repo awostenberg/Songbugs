@@ -4,7 +4,8 @@ open Microsoft.Xna.Framework
 type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
-  let mutable title : TitleImage = null
+  let alignment = new Alignment(1, 1)
+  //let mutable title : TitleImage = null
   
   member val Graphics = new GraphicsDeviceManager(this) with get, set
   
@@ -12,13 +13,12 @@ type Game() as this =
     this.Content.RootDirectory <- "../Resources/Media"
     this.Graphics.IsFullScreen <- false
     this.IsMouseVisible <- true
-    title <- new TitleImage(this)
+    alignment.Add (new TitleImage(this)) 0 0
     
     base.Initialize ()
   
-  override this.LoadContent () =
-    title.LoadContent ()
+  override this.LoadContent () = alignment.LoadContent ()
   
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.Black
-    title.Draw gameTime
+    alignment.Draw gameTime
