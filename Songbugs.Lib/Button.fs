@@ -20,6 +20,15 @@ type Button(game : Game) =
     i_normal <- game.Content.Load "b_normal.png"
     i_pressed <- game.Content.Load "b_pressed.png"
   
+  member this.BeingClicked (state : MouseState) =
+    let p = new Vector2(state.X |> float32, state.Y |> float32)
+    this.Bounds.Contains p
+  
+  override this.Update _ =
+    let state = Mouse.GetState ()
+    this.Pressed <- this.BeingClicked state
+    oldState <- state
+  
   override this.Draw _ =
     spriteBatch.Begin ()
     spriteBatch.Draw (this.Image, this.Position, Color.White)
