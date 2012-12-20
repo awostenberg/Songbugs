@@ -31,6 +31,7 @@ type Positional() =
   inherit GameObject()
   
   let mutable position = Vector2.Zero
+  let mutable center = Vector2.Zero
   
   abstract member Width : int default this.Width = 0
   abstract member Height : int default this.Height = 0
@@ -45,5 +46,5 @@ type Positional() =
   abstract Center : Vector2 with get, set
   override this.Center
     with get () = this.Position + (this.Size / 2.0f)
-    and set v = this.Position <- this.Position - (this.Size / 2.0f)
+    and set v = this.Position <- v - (this.Size / 2.0f)
   abstract Bounds : Rectangle default this.Bounds = new Rectangle(this.Position.X |> int, this.Position.Y |> int, this.Width, this.Height)
