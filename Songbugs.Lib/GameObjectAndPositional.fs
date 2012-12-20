@@ -1,7 +1,6 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
-[<AllowNullLiteral>]
 type GameObject() =
   abstract Initialize : unit -> unit default this.Initialize () = ()
   
@@ -26,7 +25,6 @@ type GameObject() =
   static member (*) (**) (vec : Vector2, num) = new Vector2(vec.X - num, vec.Y - num)
   static member (/) (vec : Vector2, num) = new Vector2(vec.X / num, vec.Y / num)
 
-[<AllowNullLiteral>]
 type Positional() =
   inherit GameObject()
   
