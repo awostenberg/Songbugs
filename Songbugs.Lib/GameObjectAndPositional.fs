@@ -34,13 +34,16 @@ type Positional() =
   
   abstract member Width : int default this.Width = 0
   abstract member Height : int default this.Height = 0
-  abstract member Size : Vector2 default this.Size = new Vector2(this.Width |> float32, this.Height |> float32)
+  abstract member Size : Vector2 with get, set
+  override this.Size
+    with get () = new Vector2(this.Width |> float32, this.Height |> float32)
+    and set v = ()
   abstract Position : Vector2 with get, set
   override this.Position
-    with get() = position
-    and set(v) = position <- v
+    with get () = position
+    and set v = position <- v
   abstract Center : Vector2 with get, set
   override this.Center
-    with get() = this.Position + (this.Size / 2.0f)
-    and set(v) = this.Position <- this.Position - (this.Size / 2.0f)
+    with get () = this.Position + (this.Size / 2.0f)
+    and set v = this.Position <- this.Position - (this.Size / 2.0f)
   abstract Bounds : Rectangle default this.Bounds = new Rectangle(this.Position.X |> int, this.Position.Y |> int, this.Width, this.Height)
