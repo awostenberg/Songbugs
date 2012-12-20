@@ -1,6 +1,7 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
+[<AllowNullLiteral>]
 type GameObject() =
   abstract Initialize : unit -> unit default this.Initialize () = ()
   
