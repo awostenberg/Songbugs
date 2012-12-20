@@ -10,7 +10,8 @@ type TitleImage(game : Game) =
   let mutable image : Texture2D = null
   let scale = 4.0f
   
-  override this.Size = base.Size * scale
+  override this.Width = image.Width * (scale |> int)
+  override this.Height = image.Height * (scale |> int)
   
   override this.LoadContent () =
     image <- game.Content.Load "title.png"
