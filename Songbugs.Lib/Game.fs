@@ -4,7 +4,7 @@ open Microsoft.Xna.Framework
 type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
-  let alignment = new Alignment(1, 1, Vector2.Zero)
+  let alignment = new Alignment(1, 3, Vector2.Zero)
   
   member val Graphics = new GraphicsDeviceManager(this) with get, set
   
