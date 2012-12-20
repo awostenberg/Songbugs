@@ -22,7 +22,7 @@ type Button(game : Game) =
   
   member this.BeingClicked (state : MouseState) =
     let p = new Vector2(state.X |> float32, state.Y |> float32)
-    this.Bounds.Contains p
+    this.Bounds.Contains p && (state.LeftButton = ButtonState.Pressed)
   
   override this.Update _ =
     let state = Mouse.GetState ()
