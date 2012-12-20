@@ -18,7 +18,7 @@ type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : Posi
   // Not in terms of pixels, but slots
   member val SlotHeight = slotHeight with get, set
   // Pixel width and height to draw with
-  member val Size = size with get, set
+  override val Size = size with get, set
   member val Elements = elements with get, set
   
   member this.Add elem x y = Array2D.set elements x y elem
@@ -32,6 +32,6 @@ type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : Posi
       obj.Update gameTime
       let x = this.Size.X / (slotWidth + 1 |> float32) * (x + 1 |> float32)
       let y = this.Size.Y / (slotHeight + 1 |> float32) * (y + 1 |> float32)
-      obj.Position <- new Vector2(x, y))
+      obj.Center <- new Vector2(x, y))
   
   override this.Draw gameTime = safeElementsDo (fun x y obj -> obj.Draw gameTime)
