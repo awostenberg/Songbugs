@@ -56,8 +56,8 @@
     <Compile Include="Game.fs" />
     <Compile Include="TitleImage.fs" />
     <Compile Include="Alignment.fs" />
-    <Compile Include="GameObjectAndPositional.fs" />
     <Compile Include="Button.fs" />
+    <Compile Include="GameObjectAndPositional.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
 </Project>

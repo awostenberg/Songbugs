@@ -14,6 +14,7 @@ type Game() as this =
     this.IsMouseVisible <- true
     alignment.Size <- new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
     alignment.Add (new TitleImage(this)) 0 0
+    alignment.Add (new Button(this)) 0 2
     alignment.Initialize ()
     
     base.Initialize ()
