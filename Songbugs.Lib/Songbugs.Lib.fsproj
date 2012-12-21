@@ -12,7 +12,7 @@
     <BuildOrder>
       <BuildOrder>
         <String>AssemblyInfo.fs</String>
-        <String>MouseButton.fs</String>
+        <String>MouseButtons.fs</String>
         <String>GameObjectAndPositional.fs</String>
         <String>Alignment.fs</String>
         <String>Button.fs</String>
