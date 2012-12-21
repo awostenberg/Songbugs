@@ -1,10 +1,21 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
+open Microsoft.Xna.Framework.Input
+open Songbugs.Lib.Input
 
 type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
   let alignment = new Alignment(1, 3, Vector2.Zero)
+  
+  static let mouseMove = new Event<Vector2>()
+  static let leftMouseClick = new Event<MouseButtons>()
+  static let middleMouseClick = new Event<MouseButtons>()
+  static let rightMouseClick = new Event<MouseButtons>()
+  
+  member this.LeftMouseClick = leftMouseClick.Publish
+  member this.MiddleMouseClick = middleMouseClick.Publish
+  member this.RightMouseClick = rightMouseClick.Publish
   
   member val Graphics = new GraphicsDeviceManager(this) with get, set
   
@@ -21,7 +32,12 @@ type Game() as this =
   
   override this.LoadContent () = alignment.LoadContent ()
   
-  override this.Update gameTime = alignment.Update gameTime
+  member this.UpdateEvents () =
+    ()
+  
+  override this.Update gameTime =
+    this.UpdateEvents ()
+    alignment.Update gameTime
   
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.Black
