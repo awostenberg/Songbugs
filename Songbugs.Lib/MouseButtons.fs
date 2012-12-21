@@ -1,4 +1,4 @@
-namespace Microsoft.Xna.Framework.Input
+namespace Songbugs.Lib.Input
 
 // An enumeration for the mouse buttons, since XNA doesn't provide one
 type MouseButtons =
