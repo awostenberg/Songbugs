@@ -1,7 +1,6 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
-open Microsoft.Xna.Framework.Input
 
 type Button(game : Game) =
   inherit Positional()
@@ -17,7 +16,7 @@ type Button(game : Game) =
   
   override this.Initialize () =
     let containsMouse () =
-      let mState = Mouse.GetState ()
+      let mState = Microsoft.Xna.Framework.Input.Mouse.GetState ()
       this.Bounds.Contains (new Vector2(mState.X |> float32, mState.Y |> float32))
     EventManager.MousePress.Add (fun b -> if containsMouse () then this.Pressed <- true)
     EventManager.MouseRelease.Add (fun b -> this.Pressed <- false)
