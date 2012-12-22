@@ -18,8 +18,14 @@ type Button(game : Game) =
     let containsMouse () =
       let mState = Microsoft.Xna.Framework.Input.Mouse.GetState ()
       this.Bounds.Contains (new Vector2(mState.X |> float32, mState.Y |> float32))
-    EventManager.MousePress.Add (fun b -> if containsMouse () then this.Pressed <- true)
-    EventManager.MouseRelease.Add (fun b -> this.Pressed <- false)
+    EventManager.MousePress
+      |> Event.filter (fun b -> b = Songbugs.Lib.Input.MouseButtons.Left)
+      |> Event.filter (fun _ -> containsMouse ())
+      |> Event.add (fun _ -> this.Pressed <- true)
+    EventManager.MouseRelease
+      |> Event.filter (fun b -> b = Songbugs.Lib.Input.MouseButtons.Left)
+      |> Event.filter (fun _ -> this.Pressed)
+      |> Event.add (fun _ -> this.Pressed <- false)
   
   override this.LoadContent () =
     i_normal <- game.Content.Load "b_normal.png"
