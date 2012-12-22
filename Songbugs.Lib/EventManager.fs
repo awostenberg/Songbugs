@@ -15,41 +15,32 @@ module EventManager =
   let MouseDown = mouseDown.Publish
   let MouseRelease = mouseRelease.Publish
   
+  // If the given button has been clicked, fire a MousePress event
+  let mousePressAction curr old evArg =
+    if (curr = ButtonState.Pressed) && (old = ButtonState.Released) then
+      mousePress.Trigger evArg
+  
+  // If the given button is down, fire a MouseDown event
+  let mouseDownAction b evArg =
+    if b = ButtonState.Pressed then
+      mouseDown.Trigger evArg
+  
+  // If the given button has been released (clicked), fire a MouseRelease event
+  let mouseReleaseAction curr old evArg =
+    if (curr = ButtonState.Released) && (old = ButtonState.Released) then
+      mouseRelease.Trigger evArg
+  
+  let updateButton currb oldb mb =
+    mousePressAction currb oldb mb
+    mouseDownAction currb  mb
+    mouseReleaseAction currb oldb mb
+  
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
     
-    let mousePress curr old evArg =
-      if (curr = ButtonState.Pressed) && (old = ButtonState.Released) then
-        mousePress.Trigger evArg
-    
-    let mouseDown b evArg =
-      if b = ButtonState.Pressed then
-        mouseDown.Trigger evArg
-    
-    let mouseRelease curr old evArg =
-      if (curr = ButtonState.Released) && (old = ButtonState.Released) then
-        mouseRelease.Trigger evArg
-    
-    let currl = mouseState.LeftButton
-    let oldl = oldMouseState.LeftButton
-    let ml = MouseButtons.Left
-    mousePress currl oldl ml
-    mouseDown currl ml
-    mouseRelease currl oldl ml
-    
-    let currm = mouseState.MiddleButton
-    let oldm = oldMouseState.MiddleButton
-    let mm = MouseButtons.Middle
-    mousePress currm oldm mm
-    mouseDown currm mm
-    mouseRelease currm oldm mm
-    
-    let currr = mouseState.RightButton
-    let oldr = oldMouseState.RightButton
-    let mr = MouseButtons.Right
-    mousePress currr oldr mr
-    mouseDown currr mr
-    mouseRelease currr oldr mr
+    updateButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
+    updateButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
+    updateButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
     
     oldMouseState <- mouseState
   
