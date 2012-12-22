@@ -7,18 +7,18 @@ module EventManager =
   
   let mutable private oldMouseState = Mouse.GetState ()
   
-  let private mouseClick = new Event<MouseButtons>()
+  let private mouseEngage = new Event<MouseButtons>()
   
-  let MouseClick = mouseClick.Publish
+  let MouseEngage = mouseEngage.Publish
   
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
     if (mouseState.LeftButton = ButtonState.Pressed) && (oldMouseState.LeftButton = ButtonState.Released) then
-      mouseClick.Trigger MouseButtons.Left
+      mouseEngage.Trigger MouseButtons.Left
     if (mouseState.MiddleButton = ButtonState.Pressed) && (oldMouseState.MiddleButton = ButtonState.Released) then
-      mouseClick.Trigger MouseButtons.Middle
+      mouseEngage.Trigger MouseButtons.Middle
     if (mouseState.RightButton = ButtonState.Pressed) && (oldMouseState.RightButton = ButtonState.Released) then
-      mouseClick.Trigger MouseButtons.Right
+      mouseEngage.Trigger MouseButtons.Right
     oldMouseState <- mouseState
   
   // Keep those events flowing.
