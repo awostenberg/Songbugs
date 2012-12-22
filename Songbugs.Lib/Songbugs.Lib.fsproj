@@ -54,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="TitleImage.fs" />
     <Compile Include="Alignment.fs" />
@@ -62,6 +61,10 @@
     <Compile Include="GameObjectAndPositional.fs" />
     <Compile Include="MouseButtons.fs" />
     <Compile Include="EventManager.fs" />
+    <Compile Include="Properties\AssemblyInfo.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>
