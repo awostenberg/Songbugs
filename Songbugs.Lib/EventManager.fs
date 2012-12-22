@@ -22,30 +22,34 @@ module EventManager =
       if (curr = ButtonState.Pressed) && (old = ButtonState.Released) then
         mousePress.Trigger evArg
     
-    // All these if statements can somehow be refactored into some function. I'll do that soon; this is ugly...
-    //if (mouseState.LeftButton = ButtonState.Pressed) && (oldMouseState.LeftButton = ButtonState.Released) then
-    //  mousePress.Trigger MouseButtons.Left
-    //else if mouseState.LeftButton = ButtonState.Pressed then
-    //  mouseDown.Trigger MouseButtons.Left
-    //else if (mouseState.LeftButton = ButtonState.Released) && (oldMouseState.LeftButton = ButtonState.Pressed) then
-    //  mouseRelease.Trigger MouseButtons.Left
-    mousePress mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
+    let mouseDown b evArg =
+      if b = ButtonState.Pressed then
+        mouseDown.Trigger evArg
     
-    //if (mouseState.MiddleButton = ButtonState.Pressed) && (oldMouseState.MiddleButton = ButtonState.Released) then
-    //  mousePress.Trigger MouseButtons.Middle
-    //else if mouseState.MiddleButton = ButtonState.Pressed then
-    //  mouseDown.Trigger MouseButtons.Middle
-    //else if (mouseState.MiddleButton = ButtonState.Released) && (oldMouseState.MiddleButton = ButtonState.Pressed) then
-    //  mouseRelease.Trigger MouseButtons.Middle
-    mousePress mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
+    let mouseRelease curr old evArg =
+      if (curr = ButtonState.Released) && (old = ButtonState.Released) then
+        mouseRelease.Trigger evArg
     
-    //if (mouseState.RightButton = ButtonState.Pressed) && (oldMouseState.RightButton = ButtonState.Released) then
-    //  mousePress.Trigger MouseButtons.Right
-    //else if mouseState.RightButton = ButtonState.Pressed then
-    //  mouseDown.Trigger MouseButtons.Right
-    //else if (mouseState.RightButton = ButtonState.Released) && (oldMouseState.RightButton = ButtonState.Pressed) then
-    //  mouseRelease.Trigger MouseButtons.Right
-    mousePress mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
+    let currl = mouseState.LeftButton
+    let oldl = oldMouseState.LeftButton
+    let ml = MouseButtons.Left
+    mousePress currl oldl ml
+    mouseDown currl ml
+    mouseRelease currl oldl ml
+    
+    let currm = mouseState.MiddleButton
+    let oldm = oldMouseState.MiddleButton
+    let mm = MouseButtons.Middle
+    mousePress currm oldm mm
+    mouseDown currm mm
+    mouseRelease currm oldm mm
+    
+    let currr = mouseState.RightButton
+    let oldr = oldMouseState.RightButton
+    let mr = MouseButtons.Right
+    mousePress currr oldr mr
+    mouseDown currr mr
+    mouseRelease currr oldr mr
     
     oldMouseState <- mouseState
   
