@@ -18,7 +18,8 @@ type Game() as this =
     alignment.Add (new TitleImage(this)) 0 0
     alignment.Add (new Button(this)) 0 2
     alignment.Initialize ()
-    EventManager.MouseEngage.Add (fun button -> printfn "%A mouse button pressed" button)
+    EventManager.MousePress.Add (fun button -> printfn "%A mouse button pressed" button)
+    EventManager.MouseDown.Add (fun button -> printfn "%A mouse button down" button)
     EventManager.MouseRelease.Add (fun button -> printfn "%A mouse button released" button)
     
     base.Initialize ()
