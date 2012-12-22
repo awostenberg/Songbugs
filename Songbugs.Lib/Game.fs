@@ -8,15 +8,6 @@ type Game() as this =
   
   let alignment = new Alignment(1, 3, Vector2.Zero)
   
-  static let mouseMove = new Event<Vector2>()
-  static let leftMouseClick = new Event<MouseButtons>()
-  static let middleMouseClick = new Event<MouseButtons>()
-  static let rightMouseClick = new Event<MouseButtons>()
-  
-  member this.LeftMouseClick = leftMouseClick.Publish
-  member this.MiddleMouseClick = middleMouseClick.Publish
-  member this.RightMouseClick = rightMouseClick.Publish
-  
   member val Graphics = new GraphicsDeviceManager(this) with get, set
   
   override this.Initialize () =

@@ -13,6 +13,7 @@
       <BuildOrder>
         <String>AssemblyInfo.fs</String>
         <String>MouseButtons.fs</String>
+        <String>EventManager.fs</String>
         <String>GameObjectAndPositional.fs</String>
         <String>Alignment.fs</String>
         <String>Button.fs</String>
@@ -60,6 +61,7 @@
     <Compile Include="Button.fs" />
     <Compile Include="GameObjectAndPositional.fs" />
     <Compile Include="MouseButtons.fs" />
+    <Compile Include="EventManager.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
 </Project>
