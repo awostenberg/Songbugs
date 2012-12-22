@@ -18,16 +18,14 @@ type Game() as this =
     alignment.Add (new TitleImage(this)) 0 0
     alignment.Add (new Button(this)) 0 2
     alignment.Initialize ()
+    EventManager.MouseClick.Add (fun button -> printfn "%A mouse button clicked" button)
     
     base.Initialize ()
   
   override this.LoadContent () = alignment.LoadContent ()
   
-  member this.UpdateEvents () =
-    ()
-  
   override this.Update gameTime =
-    this.UpdateEvents ()
+    EventManager.update ()
     alignment.Update gameTime
   
   override this.Draw gameTime =
