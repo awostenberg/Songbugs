@@ -18,12 +18,13 @@ type Button(game : Game) =
     let containsMouse () =
       let mState = Microsoft.Xna.Framework.Input.Mouse.GetState ()
       this.Bounds.Contains (new Vector2(mState.X |> float32, mState.Y |> float32))
+    let filterLeft b = b = Songbugs.Lib.Input.MouseButtons.Left
     EventManager.MousePress
-      |> Event.filter (fun b -> b = Songbugs.Lib.Input.MouseButtons.Left)
+      |> Event.filter filterLeft
       |> Event.filter (fun _ -> containsMouse ())
       |> Event.add (fun _ -> this.Pressed <- true)
     EventManager.MouseRelease
-      |> Event.filter (fun b -> b = Songbugs.Lib.Input.MouseButtons.Left)
+      |> Event.filter filterLeft
       |> Event.filter (fun _ -> this.Pressed)
       |> Event.add (fun _ -> this.Pressed <- false)
   
