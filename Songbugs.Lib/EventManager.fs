@@ -7,9 +7,9 @@ module EventManager =
   
   let mutable private oldMouseState = Mouse.GetState ()
   
-  let private MouseClick = new Event<MouseButtons>()
+  let private mouseClick = new Event<MouseButtons>()
   
-  let MouseClick = MouseClick.Publish
+  let MouseClick = mouseClick.Publish
   
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
