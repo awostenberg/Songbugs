@@ -19,7 +19,8 @@ module EventManager =
       mouseClick.Trigger MouseButtons.Middle
     if (mouseState.RightButton = ButtonState.Pressed) && (oldMouseState.RightButton = ButtonState.Released) then
       mouseClick.Trigger MouseButtons.Right
+    oldMouseState <- mouseState
   
-  // Call this to keep events flowing
+  // Keep those events flowing.
   let update () =
     updateMouseEvents ()
