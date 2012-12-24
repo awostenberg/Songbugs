@@ -12,7 +12,11 @@ module MiscOps =
         FSharpValue.GetTupleFields args
       else
         [|args|]
-    o.GetType().InvokeMember (m, BindingFlags.GetProperty ||| BindingFlags.InvokeMethod, null, o, args)
+    unbox (o.GetType().InvokeMember (m, BindingFlags.InvokeMethod ||| BindingFlags.GetProperty ||| BindingFlags.GetField, null, o, args))
+  
+  let getEnumValue<'E> field =
+    let enumType = typeof<'E>
+    unbox<'E> (enumType.InvokeMember(field, BindingFlags.Static ||| BindingFlags.GetField, null, enumType, [||]))
   
   // Return a clone of s with the first letter uppercased
   let cap (s : string) = (Char.ToUpper s.[0] |> string) + (s.Substring 1)
