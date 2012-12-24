@@ -16,31 +16,31 @@ module EventManager =
   let MouseRelease = mouseRelease.Publish
   
   // If the given button has been clicked, fire a MousePress event
-  let mousePressAction curr old evArg =
+  let buttonPressAction curr old evArg (ev : _ Event) =
     if (curr = ButtonState.Pressed) && (old = ButtonState.Released) then
-      mousePress.Trigger evArg
+      ev.Trigger evArg
   
   // If the given button is down, fire a MouseDown event
-  let mouseDownAction b evArg =
+  let buttonDownAction b evArg (ev : _ Event) =
     if b = ButtonState.Pressed then
-      mouseDown.Trigger evArg
+      ev.Trigger evArg
   
   // If the given button has been released (clicked), fire a MouseRelease event
-  let mouseReleaseAction curr old evArg =
+  let buttonReleaseAction curr old evArg (ev : _ Event) =
     if (curr = ButtonState.Released) && (old = ButtonState.Released) then
-      mouseRelease.Trigger evArg
+     ev.Trigger evArg
   
-  let updateButton currb oldb mb =
-    mousePressAction currb oldb mb
-    mouseDownAction currb  mb
-    mouseReleaseAction currb oldb mb
+  let updateMouseButton currb oldb mb =
+    buttonPressAction currb oldb mb mousePress
+    buttonDownAction currb mb mouseDown
+    buttonReleaseAction currb oldb mb mouseRelease
   
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
     
-    updateButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
-    updateButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
-    updateButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
+    updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
+    updateMouseButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
+    updateMouseButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
     
     oldMouseState <- mouseState
   
