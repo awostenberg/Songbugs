@@ -5,8 +5,12 @@ open Songbugs.Lib.Input
 
 module EventManager =
   
+  let mutable private oldKeybState = Keyboard.GetState ()
   let mutable private oldMouseState = Mouse.GetState ()
   
+  let private keyPress = new Event<Keys>()
+  let private keyDown = new Event<Keys>()
+  let private keyRelease = new Event<Keys>()
   let private mousePress = new Event<MouseButtons>()
   let private mouseDown = new Event<MouseButtons>()
   let private mouseRelease = new Event<MouseButtons>()
@@ -35,9 +39,14 @@ module EventManager =
     buttonDownAction currb b evDown
     buttonReleaseAction currb oldb b evRelease
   
+  let updateKeyboardEvents () =
+    let keybState = Keyboard.GetState
+    let updateKey currkb oldkb kb = updateButton currkb oldkb kb
+    
+    ()
+  
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
-    
     let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
     
     updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
@@ -50,4 +59,5 @@ module EventManager =
   
   // Keep those events flowing.
   let update () =
+    updateKeyboardEvents ()
     updateMouseEvents ()
