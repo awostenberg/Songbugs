@@ -1,21 +1,10 @@
 namespace Songbugs.Lib
-open System.Reflection
-open Microsoft.FSharp.Reflection
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Input
+open Songbugs.Lib.MiscOps
 open Songbugs.Lib.Input
 
 module EventManager =
-  
-  let (?) o m args =
-    let args =
-      if box args = null then
-        [||]
-      elif FSharpType.IsTuple (args.GetType ()) then
-        FSharpValue.GetTupleFields args
-      else
-        [|args|]
-    o.GetType().InvokeMember (m, BindingFlags.GetProperty ||| BindingFlags.InvokeMethod, null, o, args)
   
   let mutable private oldKeybState = Keyboard.GetState ()
   let mutable private oldMouseState = Mouse.GetState ()
@@ -55,9 +44,12 @@ module EventManager =
     let mouseState = Mouse.GetState ()
     let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
     
-    updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
-    updateMouseButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
-    updateMouseButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
+    for e in ["left"; "middle"; "right"] do
+      updateMouseButton mouseState.
+    
+    //updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
+    //updateMouseButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
+    //updateMouseButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
     updateMouseButton mouseState.XButton1 oldMouseState.XButton1 MouseButtons.X1
     updateMouseButton mouseState.XButton2 oldMouseState.XButton2 MouseButtons.X2
     

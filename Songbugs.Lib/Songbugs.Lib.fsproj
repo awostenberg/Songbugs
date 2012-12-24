@@ -11,14 +11,15 @@
     <AssemblyName>Songbugs.Lib</AssemblyName>
     <BuildOrder>
       <BuildOrder>
-        <String>AssemblyInfo.fs</String>
         <String>MouseButtons.fs</String>
+        <String>MiscOps.fs</String>
         <String>EventManager.fs</String>
         <String>GameObjectAndPositional.fs</String>
         <String>Alignment.fs</String>
         <String>Button.fs</String>
         <String>TitleImage.fs</String>
         <String>Game.fs</String>
+        <String>Properties/AssemblyInfo.fs</String>
       </BuildOrder>
     </BuildOrder>
   </PropertyGroup>
@@ -62,6 +63,7 @@
     <Compile Include="MouseButtons.fs" />
     <Compile Include="EventManager.fs" />
     <Compile Include="Properties\AssemblyInfo.fs" />
+    <Compile Include="MiscOps.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
