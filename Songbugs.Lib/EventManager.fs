@@ -1,9 +1,21 @@
 namespace Songbugs.Lib
+open System.Reflection
+open Microsoft.FSharp.Reflection
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Input
 open Songbugs.Lib.Input
 
 module EventManager =
+  
+  let (?) o m args =
+    let args =
+      if box args = null then
+        [||]
+      elif FSharpType.IsTuple (args.GetType ()) then
+        FSharpValue.GetTupleFields args
+      else
+        [|args|]
+    o.GetType().InvokeMember (m, BindingFlags.GetProperty ||| BindingFlags.InvokeMethod, null, o, args)
   
   let mutable private oldKeybState = Keyboard.GetState ()
   let mutable private oldMouseState = Mouse.GetState ()
@@ -39,12 +51,6 @@ module EventManager =
     buttonDownAction currb b evDown
     buttonReleaseAction currb oldb b evRelease
   
-  let updateKeyboardEvents () =
-    let keybState = Keyboard.GetState
-    let updateKey currkb oldkb kb = updateButton currkb oldkb kb
-    
-    ()
-  
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
     let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
@@ -59,5 +65,4 @@ module EventManager =
   
   // Keep those events flowing.
   let update () =
-    updateKeyboardEvents ()
     updateMouseEvents ()
