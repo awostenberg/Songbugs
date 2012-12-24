@@ -30,10 +30,12 @@ module EventManager =
     if (curr = ButtonState.Released) && (old = ButtonState.Released) then
      ev.Trigger evArg
   
-  let updateMouseButton currb oldb mb =
-    buttonPressAction currb oldb mb mousePress
-    buttonDownAction currb mb mouseDown
-    buttonReleaseAction currb oldb mb mouseRelease
+  let updateButton currb oldb b evPress evDown evRelease =
+    buttonPressAction currb oldb b evPress
+    buttonDownAction currb b evDown
+    buttonReleaseAction currb oldb b evRelease
+  
+  let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
   
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
@@ -41,6 +43,8 @@ module EventManager =
     updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
     updateMouseButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
     updateMouseButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
+    updateMouseButton mouseState.XButton1 oldMouseState.XButton1 MouseButtons.X1
+    updateMouseButton mouseState.XButton2 oldMouseState.XButton2 MouseButtons.X2
     
     oldMouseState <- mouseState
   
