@@ -44,12 +44,12 @@ module EventManager =
     let mouseState = Mouse.GetState ()
     let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
     
-    for e in ["left"; "middle"; "right"] do
-      updateMouseButton mouseState.
+    for mb in ["left"; "middle"; "right"] do
+      let v : MouseButtons = unbox (getEnumValue<MouseButtons> (cap mb))
+      let short = (cap mb)
+      let long = short + "Button"
+      updateMouseButton (unbox ((?) mouseState long ())) (unbox ((?) oldMouseState long ())) (getEnumValue<MouseButtons> short)
     
-    //updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
-    //updateMouseButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
-    //updateMouseButton mouseState.RightButton oldMouseState.RightButton MouseButtons.Right
     updateMouseButton mouseState.XButton1 oldMouseState.XButton1 MouseButtons.X1
     updateMouseButton mouseState.XButton2 oldMouseState.XButton2 MouseButtons.X2
     
