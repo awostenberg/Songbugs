@@ -1,4 +1,5 @@
 namespace Songbugs.Lib
+open System
 open System.Reflection
 open Microsoft.FSharp.Reflection
 
@@ -13,3 +14,5 @@ module MiscOps =
         [|args|]
     o.GetType().InvokeMember (m, BindingFlags.GetProperty ||| BindingFlags.InvokeMethod, null, o, args)
   
+  // Return a clone of s with the first letter uppercased
+  let cap (s : string) = (Char.ToUpper s.[0] |> string) + (s.Substring 1)
