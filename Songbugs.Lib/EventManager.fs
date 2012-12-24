@@ -35,10 +35,10 @@ module EventManager =
     buttonDownAction currb b evDown
     buttonReleaseAction currb oldb b evRelease
   
-  let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
-  
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
+    
+    let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
     
     updateMouseButton mouseState.LeftButton oldMouseState.LeftButton MouseButtons.Left
     updateMouseButton mouseState.MiddleButton oldMouseState.MiddleButton MouseButtons.Middle
