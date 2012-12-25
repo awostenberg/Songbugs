@@ -16,36 +16,53 @@ module EventManager =
   let private mouseDown = new Event<MouseButtons>()
   let private mouseRelease = new Event<MouseButtons>()
   
+  let KeyPress = keyPress.Publish
+  let KeyDown = keyDown.Publish
+  let KeyRelease = keyRelease.Publish
   let MousePress = mousePress.Publish
   let MouseDown = mouseDown.Publish
   let MouseRelease = mouseRelease.Publish
   
-  // If the given button has been clicked, fire a MousePress event
-  let buttonPressAction curr old evArg (ev : _ Event) =
+  // If the given key has been pressed, fire a KeyPress event
+  let keyPressAction (curr : KeyboardState) (old : KeyboardState) b evArg (ev : _ Event) =
+    if (curr.IsKeyDown b) && (old.IsKeyUp b) then
+      ev.Trigger evArg
+  
+  // If the given key is down, fire a KeyDown event
+  let keyDownAction (curr : KeyboardState) b evArg (ev : _ Event) =
+    if curr.IsKeyDown b then
+      ev.Trigger evArg
+  
+  // If the given key is up, fire a KeyUp event
+  let keyReleaseAction (curr : KeyboardState) (old : KeyboardState) b evArg (ev : _ Event) =
+    if (curr.IsKeyUp b) && (old.IsKeyDown b) then
+      ev.Trigger evArg
+  
+  // If the given mouse button has been clicked, fire a MousePress event
+  let mouseButtonPressAction curr old evArg (ev : _ Event) =
     if (curr = ButtonState.Pressed) && (old = ButtonState.Released) then
       ev.Trigger evArg
   
-  // If the given button is down, fire a MouseDown event
-  let buttonDownAction b evArg (ev : _ Event) =
+  // If the given mouse button is down, fire a MouseDown event
+  let mouseButtonDownAction b evArg (ev : _ Event) =
     if b = ButtonState.Pressed then
       ev.Trigger evArg
   
-  // If the given button has been released (clicked), fire a MouseRelease event
-  let buttonReleaseAction curr old evArg (ev : _ Event) =
+  // If the given mosue button has been released (clicked), fire a MouseRelease event
+  let mouseButtonReleaseAction curr old evArg (ev : _ Event) =
     if (curr = ButtonState.Released) && (old = ButtonState.Released) then
      ev.Trigger evArg
   
   let updateButton currb oldb b evPress evDown evRelease =
-    buttonPressAction currb oldb b evPress
-    buttonDownAction currb b evDown
-    buttonReleaseAction currb oldb b evRelease
+    mouseButtonPressAction currb oldb b evPress
+    mouseButtonDownAction currb b evDown
+    mouseButtonReleaseAction currb oldb b evRelease
   
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
     let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
     
     for mb in ["left"; "middle"; "right"] do
-      let v : MouseButtons = unbox (getEnumValue<MouseButtons> (cap mb))
       let short = (cap mb)
       let long = short + "Button"
       updateMouseButton (unbox ((?) mouseState long ())) (unbox ((?) oldMouseState long ())) (getEnumValue<MouseButtons> short)
