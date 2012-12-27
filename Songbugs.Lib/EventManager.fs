@@ -24,18 +24,18 @@ module EventManager =
   let MouseRelease = mouseRelease.Publish
   
   // If the given key has been pressed, fire a KeyPress event
-  let keyPressAction (curr : KeyboardState) (old : KeyboardState) b evArg (ev : _ Event) =
-    if (curr.IsKeyDown b) && (old.IsKeyUp b) then
+  let keyPressAction (curr : KeyboardState) (old : KeyboardState) k evArg (ev : _ Event) =
+    if (curr.IsKeyDown k) && (old.IsKeyUp k) then
       ev.Trigger evArg
   
   // If the given key is down, fire a KeyDown event
-  let keyDownAction (curr : KeyboardState) b evArg (ev : _ Event) =
-    if curr.IsKeyDown b then
+  let keyDownAction (curr : KeyboardState) k evArg (ev : _ Event) =
+    if curr.IsKeyDown k then
       ev.Trigger evArg
   
   // If the given key is up, fire a KeyUp event
-  let keyReleaseAction (curr : KeyboardState) (old : KeyboardState) b evArg (ev : _ Event) =
-    if (curr.IsKeyUp b) && (old.IsKeyDown b) then
+  let keyReleaseAction (curr : KeyboardState) (old : KeyboardState) k evArg (ev : _ Event) =
+    if (curr.IsKeyUp k) && (old.IsKeyDown k) then
       ev.Trigger evArg
   
   // If the given mouse button has been clicked, fire a MousePress event
@@ -58,6 +58,15 @@ module EventManager =
     mouseButtonDownAction currb b mouseDown
     mouseButtonReleaseAction currb oldb b mouseRelease
   
+  let updateKeyboardEvents () =
+    let keybState = Keyboard.GetState ()
+    
+    keyPressAction keybState oldKeybState Keys.Escape Keys.Escape keyPress
+    keyDownAction keybState Keys.Escape Keys.Escape keyDown
+    keyReleaseAction keybState oldKeybState Keys.Escape Keys.Escape keyRelease
+    
+    oldKeybState <- keybState
+  
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
     
@@ -73,4 +82,5 @@ module EventManager =
   
   // Keep those events flowing.
   let update () =
+    updateKeyboardEvents ()
     updateMouseEvents ()
