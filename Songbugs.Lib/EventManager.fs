@@ -1,8 +1,9 @@
 namespace Songbugs.Lib
+open System
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Input
-open Songbugs.Lib.MiscOps
 open Songbugs.Lib.Input
+open MiscOps
 
 module EventManager =
   
@@ -24,19 +25,19 @@ module EventManager =
   let MouseRelease = mouseRelease.Publish
   
   // If the given key has been pressed, fire a KeyPress event
-  let keyPressAction (curr : KeyboardState) (old : KeyboardState) k evArg (ev : _ Event) =
+  let keyPressAction (curr : KeyboardState) (old : KeyboardState) k (ev : _ Event) =
     if (curr.IsKeyDown k) && (old.IsKeyUp k) then
-      ev.Trigger evArg
+      ev.Trigger k
   
   // If the given key is down, fire a KeyDown event
-  let keyDownAction (curr : KeyboardState) k evArg (ev : _ Event) =
+  let keyDownAction (curr : KeyboardState) k (ev : _ Event) =
     if curr.IsKeyDown k then
-      ev.Trigger evArg
+      ev.Trigger k
   
   // If the given key is up, fire a KeyUp event
-  let keyReleaseAction (curr : KeyboardState) (old : KeyboardState) k evArg (ev : _ Event) =
+  let keyReleaseAction (curr : KeyboardState) (old : KeyboardState) k (ev : _ Event) =
     if (curr.IsKeyUp k) && (old.IsKeyDown k) then
-      ev.Trigger evArg
+      ev.Trigger k
   
   // If the given mouse button has been clicked, fire a MousePress event
   let mouseButtonPressAction curr old evArg (ev : _ Event) =
@@ -61,9 +62,14 @@ module EventManager =
   let updateKeyboardEvents () =
     let keybState = Keyboard.GetState ()
     
-    keyPressAction keybState oldKeybState Keys.Escape Keys.Escape keyPress
-    keyDownAction keybState Keys.Escape Keys.Escape keyDown
-    keyReleaseAction keybState oldKeybState Keys.Escape Keys.Escape keyRelease
+    // Iterate over every key
+    for k in Enum.GetValues typeof<Keys> do
+      // Unbox it to a value of Keys
+      let key = unbox<Keys> k
+      // Test each event using the key
+      keyPressAction keybState oldKeybState key keyPress
+      keyDownAction keybState key keyDown
+      keyReleaseAction keybState oldKeybState key keyRelease
     
     oldKeybState <- keybState
   
