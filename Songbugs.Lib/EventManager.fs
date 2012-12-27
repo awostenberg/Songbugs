@@ -53,14 +53,13 @@ module EventManager =
     if (curr = ButtonState.Released) && (old = ButtonState.Released) then
      ev.Trigger evArg
   
-  let updateButton currb oldb b evPress evDown evRelease =
-    mouseButtonPressAction currb oldb b evPress
-    mouseButtonDownAction currb b evDown
-    mouseButtonReleaseAction currb oldb b evRelease
+  let updateMouseButton currb oldb b =
+    mouseButtonPressAction currb oldb b mousePress
+    mouseButtonDownAction currb b mouseDown
+    mouseButtonReleaseAction currb oldb b mouseRelease
   
   let updateMouseEvents () =
     let mouseState = Mouse.GetState ()
-    let updateMouseButton currmb oldmb mb = updateButton currmb oldmb mb mousePress mouseDown mouseRelease
     
     for mb in ["left"; "middle"; "right"] do
       let short = (cap mb)
