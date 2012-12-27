@@ -4,7 +4,9 @@ open System.Reflection
 open Microsoft.FSharp.Reflection
 
 module MiscOps =
+  // An inplementation of the dynamic lookup operator -- uses reflection to find a method at runtime instead of compile time
   let (?) o m args =
+    // Convert arguments (can be a tuple) to an array that Type.InvokeMember can use
     let args =
       if box args = null then
         [||]
@@ -12,8 +14,11 @@ module MiscOps =
         FSharpValue.GetTupleFields args
       else
         [|args|]
+    // Cast to some type to bring it back to the safe static world
     unbox (o.GetType().InvokeMember (m, BindingFlags.InvokeMethod ||| BindingFlags.GetProperty ||| BindingFlags.GetField, null, o, args))
   
+  // Dynamically get a value of an Enum
+  // Can't merge this into op_Dynamic as much as I'd like to...
   let getEnumValue<'E> field =
     let enumType = typeof<'E>
     unbox<'E> (enumType.InvokeMember(field, BindingFlags.Static ||| BindingFlags.GetField, null, enumType, [||]))
