@@ -18,6 +18,7 @@ type Button(game : Game) =
     let containsMouse () =
       let mState = Microsoft.Xna.Framework.Input.Mouse.GetState ()
       this.Bounds.Contains (new Vector2(mState.X |> float32, mState.Y |> float32))
+    // Filter for the left mouse button
     let filterLeft b = b = Songbugs.Lib.Input.MouseButtons.Left
     EventManager.MousePress
       |> Event.filter filterLeft
@@ -25,10 +26,12 @@ type Button(game : Game) =
       |> Event.add (fun _ -> this.Pressed <- true)
     EventManager.MouseRelease
       |> Event.filter filterLeft
+      // !! Don't proceed if the button wasn't already being pressed -- actions tied to this button will execute !!
       |> Event.filter (fun _ -> this.Pressed)
       |> Event.add (fun _ -> this.Pressed <- false)
   
   override this.LoadContent () =
+    // Load two images: the image to draw when the button is not pressed (i_normal = b_normal.png) and the image for when the button _is_ pressed (i_pressed = b_pressed)
     i_normal <- game.Content.Load "b_normal.png"
     i_pressed <- game.Content.Load "b_pressed.png"
   
