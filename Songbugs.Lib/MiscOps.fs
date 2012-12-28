@@ -17,6 +17,8 @@ module MiscOps =
     // Cast to some type to bring it back to the safe static world
     unbox (o.GetType().InvokeMember (m, BindingFlags.InvokeMethod ||| BindingFlags.GetProperty ||| BindingFlags.GetField, null, o, args))
   
+  let setProperty o p args = unbox (o.GetType().InvokeMember (p, BindingFlags.SetProperty, null, o, args))
+  
   // Dynamically get a value of an Enum
   // Can't merge this into op_Dynamic as much as I'd like to...
   let getEnumValue<'E> field =
