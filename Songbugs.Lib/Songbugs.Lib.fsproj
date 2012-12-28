@@ -20,7 +20,7 @@
         <String>TitleImage.fs</String>
         <String>GameScreen.fs</String>
         <String>MainMenu.fs</String>
-        <String>GameWorld.fs</String>
+        <String>Board.fs</String>
         <String>Game.fs</String>
         <String>Properties/AssemblyInfo.fs</String>
       </BuildOrder>
