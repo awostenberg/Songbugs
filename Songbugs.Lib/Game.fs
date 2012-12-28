@@ -9,6 +9,7 @@ type Game() as this =
   let mutable screens : GameScreen list = []
   
   member this.Size = new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
+  member val CurrentScreen = 0 with get, set
   
   member val Graphics : GraphicsDeviceManager = new GraphicsDeviceManager(this) with get, set
   
@@ -25,8 +26,8 @@ type Game() as this =
   
   override this.Update gameTime =
     EventManager.update ()
-    screens.[0].Update gameTime
+    screens.[this.CurrentScreen].Update gameTime
   
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.Black
-    screens.[0].Draw gameTime
+    screens.[this.CurrentScreen].Draw gameTime
