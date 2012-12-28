@@ -20,6 +20,7 @@
         <String>TitleImage.fs</String>
         <String>GameScreen.fs</String>
         <String>MainMenu.fs</String>
+        <String>GameWorld.fs</String>
         <String>Game.fs</String>
         <String>Properties/AssemblyInfo.fs</String>
       </BuildOrder>
@@ -68,6 +69,7 @@
     <Compile Include="MiscOps.fs" />
     <Compile Include="GameScreen.fs" />
     <Compile Include="MainMenu.fs" />
+    <Compile Include="Board.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
