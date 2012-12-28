@@ -1,6 +1,7 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
+[<AllowNullLiteral>]
 type MainMenu(game, size : Vector2) =
   inherit GameScreen()
   
