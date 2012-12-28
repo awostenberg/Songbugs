@@ -8,11 +8,13 @@ type Button(game : Game) =
   let spriteBatch = new SpriteBatch(game.GraphicsDevice)
   let mutable i_normal : Texture2D = null
   let mutable i_pressed : Texture2D = null
+  let clickEvent = new Event<_> ()
   
   member val Pressed = false with get, set
   member this.Image = if this.Pressed then i_pressed else i_normal
   override this.Width = this.Image.Width
   override this.Height = this.Image.Height
+  member this.Click = clickEvent.Publish
   
   override this.Initialize () =
     let containsMouse () =
@@ -28,7 +30,7 @@ type Button(game : Game) =
       |> Event.filter filterLeft
       // !! Don't proceed if the button wasn't already being pressed -- actions tied to this button will execute !!
       |> Event.filter (fun _ -> this.Pressed)
-      |> Event.add (fun _ -> this.Pressed <- false)
+      |> Event.add (fun _ -> this.Pressed <- false; clickEvent.Trigger ())
   
   override this.LoadContent () =
     // Load two images: the image to draw when the button is not pressed (i_normal = b_normal.png) and the image for when the button _is_ pressed (i_pressed = b_pressed)
