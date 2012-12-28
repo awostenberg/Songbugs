@@ -15,8 +15,8 @@ type Game() as this =
     this.Graphics.IsFullScreen <- false
     this.IsMouseVisible <- true
     alignment.Size <- new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
-    alignment.Add (new TitleImage(this)) 0 0
-    alignment.Add (new Button(this)) 0 2
+    alignment.[0, 0] <- new TitleImage(this)
+    alignment.[0, 2] <- new Button(this)
     alignment.Initialize ()
     
     base.Initialize ()
