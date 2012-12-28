@@ -11,6 +11,7 @@ type MainMenu(game, size : Vector2) =
     alignment.[0, 0] <- new TitleImage(game)
     alignment.[0, 2] <- new Button(game)
     alignment.Size <- size
+    alignment.Initialize ()
   
   override this.LoadContent () = alignment.LoadContent ()
   
