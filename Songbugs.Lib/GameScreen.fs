@@ -1,4 +1,5 @@
 namespace Songbugs.Lib
 
-type GameScreen =
-  class end
+[<AbstractClass>]
+type GameScreen() =
+  inherit GameObject()
