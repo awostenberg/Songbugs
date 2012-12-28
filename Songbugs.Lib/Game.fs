@@ -7,11 +7,17 @@ type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
   let mutable screens : GameScreen list = []
+  let mutable currentScreen = 0
+  let screenChange = new Event<int>()
   
   member this.Size = new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
-  member val CurrentScreen = 0 with get, set
-  
+  member this.CurrentScreen
+    with get () = currentScreen
+    and set v =
+      currentScreen <- v
+      screenChange.Trigger v
   member val Graphics : GraphicsDeviceManager = new GraphicsDeviceManager(this) with get, set
+  member this.ScreenChange = screenChange.Publish
   
   override this.Initialize () =
     this.Content.RootDirectory <- "../Resources/Media"
