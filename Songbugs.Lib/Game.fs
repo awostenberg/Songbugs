@@ -17,7 +17,7 @@ type Game() as this =
     this.Content.RootDirectory <- "../Resources/Media"
     this.Graphics.IsFullScreen <- false
     this.IsMouseVisible <- true
-    screens <- [new MainMenu(this, this.Size)]
+    screens <- [new MainMenu(this, this.Size); new Board(this)]
     List.iter (fun (screen : GameScreen) -> screen.Initialize ()) screens
     
     base.Initialize ()
