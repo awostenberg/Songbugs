@@ -21,7 +21,9 @@ type Alignment(slotWidth: int, slotHeight : int, size : Vector2, elements : Posi
   override val Size = size with get, set
   member val Elements = elements with get, set
   
-  member this.Add elem x y = Array2D.set elements x y elem
+  member this.Item
+    with get (x, y) = elements.[x, y]
+    and set (x, y) elem = Array2D.set elements x y elem
   
   override this.Initialize () = safeElementsDo (fun x y obj -> obj.Initialize ())
   
