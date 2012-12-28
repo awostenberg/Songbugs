@@ -6,7 +6,9 @@ open Songbugs.Lib.Input
 type Game() as this =
   inherit Microsoft.Xna.Framework.Game ()
   
-  let mutable mainMenu : MainMenu = null
+  let mutable screens : GameScreen list = []
+  
+  member this.Size = new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
   
   member val Graphics : GraphicsDeviceManager = new GraphicsDeviceManager(this) with get, set
   
@@ -14,17 +16,17 @@ type Game() as this =
     this.Content.RootDirectory <- "../Resources/Media"
     this.Graphics.IsFullScreen <- false
     this.IsMouseVisible <- true
-    mainMenu <- new MainMenu(this, new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32))
-    mainMenu.Initialize ()
+    screens <- [new MainMenu(this, this.Size)]
+    List.iter (fun (screen : GameScreen) -> screen.Initialize ()) screens
     
     base.Initialize ()
   
-  override this.LoadContent () = mainMenu.LoadContent ()
+  override this.LoadContent () = List.iter (fun (screen : GameScreen) -> screen.LoadContent ()) screens
   
   override this.Update gameTime =
     EventManager.update ()
-    mainMenu.Update gameTime
+    screens.[0].Update gameTime
   
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.Black
-    mainMenu.Draw gameTime
+    screens.[0].Draw gameTime
