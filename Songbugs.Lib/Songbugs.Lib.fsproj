@@ -19,6 +19,7 @@
         <String>Button.fs</String>
         <String>TitleImage.fs</String>
         <String>GameScreen.fs</String>
+        <String>StateBasedGame.fs</String>
         <String>MainMenu.fs</String>
         <String>Board.fs</String>
         <String>Game.fs</String>
@@ -70,6 +71,7 @@
     <Compile Include="GameScreen.fs" />
     <Compile Include="MainMenu.fs" />
     <Compile Include="Board.fs" />
+    <Compile Include="StateBasedGame.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
