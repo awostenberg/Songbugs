@@ -5,11 +5,14 @@ type StateBasedGame() =
   inherit Game()
   
   let mutable screens : GameScreen [] = [||]
+  let mutable currentScreen = 0
   let screenChange = new Event<int>()
   
   member this.ScreenChange = screenChange.Publish
   
-  abstract Screens : GameScreen [] with get, set
-  override this.Screens
-    with get () = screens
-    and set v = screens <- v
+  abstract CurrentScreen : int with get, set
+  override this.CurrentScreen
+    with get () = currentScreen
+    and set v =
+      currentScreen <- v
+      screenChange.Trigger v
