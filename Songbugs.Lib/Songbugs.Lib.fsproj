@@ -68,7 +68,6 @@
     <Compile Include="EventManager.fs" />
     <Compile Include="Properties\AssemblyInfo.fs" />
     <Compile Include="MiscOps.fs" />
-    <Compile Include="GameScreen.fs" />
     <Compile Include="MainMenu.fs" />
     <Compile Include="Board.fs" />
     <Compile Include="StateBasedGame.fs" />
