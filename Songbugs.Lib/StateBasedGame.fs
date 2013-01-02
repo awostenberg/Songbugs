@@ -4,7 +4,7 @@ open Microsoft.Xna.Framework
 type StateBasedGame() =
   inherit Game()
   
-  let mutable screens : GameScreen [] = [||]
+  let mutable screens : GameObject [] = [||]
   let mutable currentScreen = 0
   let screenChange = new Event<int>()
   
@@ -16,3 +16,6 @@ type StateBasedGame() =
     and set v =
       currentScreen <- v
       screenChange.Trigger v
+
+and [<AbstractClass>] [<AllowNullLiteral>] GameScreen(game : StateBasedGame) =
+  inherit GameObject()
