@@ -16,9 +16,9 @@
         <String>EventManager.fs</String>
         <String>GameObjectAndPositional.fs</String>
         <String>Alignment.fs</String>
+        <String>SpriteFont.fs</String>
         <String>Button.fs</String>
         <String>TitleImage.fs</String>
-        <String>GameScreen.fs</String>
         <String>StateBasedGame.fs</String>
         <String>MainMenu.fs</String>
         <String>Board.fs</String>
@@ -71,6 +71,7 @@
     <Compile Include="MainMenu.fs" />
     <Compile Include="Board.fs" />
     <Compile Include="StateBasedGame.fs" />
+    <Compile Include="SpriteSheetFont.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
