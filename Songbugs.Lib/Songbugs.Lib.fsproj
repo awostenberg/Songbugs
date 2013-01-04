@@ -71,7 +71,6 @@
     <Compile Include="MainMenu.fs" />
     <Compile Include="Board.fs" />
     <Compile Include="StateBasedGame.fs" />
-    <Compile Include="SpriteSheetFont.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
