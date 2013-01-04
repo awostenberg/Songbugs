@@ -27,5 +27,5 @@ type Game() as this =
     screens.[this.CurrentScreen].Update gameTime
   
   override this.Draw gameTime =
-    this.GraphicsDevice.Clear Color.Black
+    this.GraphicsDevice.Clear Color.Green
     screens.[this.CurrentScreen].Draw gameTime
