@@ -90,5 +90,6 @@
     <BundleResource Include="Media\title.png" />
     <BundleResource Include="Media\b_normal.png" />
     <BundleResource Include="Media\b_pressed.png" />
+    <BundleResource Include="Media\Consolas.xnb" />
   </ItemGroup>
 </Project>
