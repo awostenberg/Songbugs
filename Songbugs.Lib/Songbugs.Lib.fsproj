@@ -63,7 +63,6 @@
     <Compile Include="TitleImage.fs" />
     <Compile Include="Alignment.fs" />
     <Compile Include="Button.fs" />
-    <Compile Include="GameObjectAndPositional.fs" />
     <Compile Include="MouseButtons.fs" />
     <Compile Include="EventManager.fs" />
     <Compile Include="Properties\AssemblyInfo.fs" />
@@ -71,6 +70,7 @@
     <Compile Include="MainMenu.fs" />
     <Compile Include="Board.fs" />
     <Compile Include="StateBasedGame.fs" />
+    <Compile Include="GameObjects.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
