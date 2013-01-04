@@ -8,10 +8,13 @@ type MainMenu(game, size : Vector2) =
   let alignment = new Alignment(1, 3, Vector2.Zero)
   
   override this.Initialize () =
-    let b = new Button(game, "PLAY")
-    b.Click.Add (fun () -> game.CurrentScreen <- 1 (* 1 is the main game*))
+    let playButton = new Button(game, "PLAY")
+    let exitButton = new Button(game, "EXIT")
+    playButton.Click.Add (fun () -> game.CurrentScreen <- 1 (* 1 is the main game*))
+    exitButton.Click.Add (fun () -> game.Exit ())
     alignment.[0, 0] <- new TitleImage(game)
-    alignment.[0, 2] <- b
+    alignment.[0, 1] <- playButton
+    alignment.[0, 2] <- exitButton
     alignment.Size <- size
     alignment.Initialize ()
   
