@@ -55,7 +55,7 @@
       <HintPath>..\..\..\..\..\..\Applications\MonoDevelop.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MonoGame\MonoMac.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework.MacOS">
-      <HintPath>..\..\..\..\..\..\Applications\MonoDevelop.app\Contents\MacOS\lib\monodevelop\AddIns\MonoDevelop.MonoGame\MonoGame.Framework.MacOS.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\Current\lib\mono\4.0\MonoGame.Framework.MacOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
