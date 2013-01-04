@@ -70,6 +70,7 @@
     <Compile Include="Board.fs" />
     <Compile Include="StateBasedGame.fs" />
     <Compile Include="GameObjects.fs" />
+    <Compile Include="Palette.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
