@@ -14,9 +14,8 @@
         <String>MouseButtons.fs</String>
         <String>MiscOps.fs</String>
         <String>EventManager.fs</String>
-        <String>GameObjectAndPositional.fs</String>
+        <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
-        <String>SpriteFont.fs</String>
         <String>Button.fs</String>
         <String>TitleImage.fs</String>
         <String>StateBasedGame.fs</String>
