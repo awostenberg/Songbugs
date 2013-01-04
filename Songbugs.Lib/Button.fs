@@ -9,6 +9,7 @@ type Button(game : Game, text : string) =
   let mutable i_normal : Texture2D = null
   let mutable i_pressed : Texture2D = null
   let mutable font : SpriteFont = null
+  let mutable stringPosition = Vector2.Zero
   let clickEvent = new Event<_> ()
   
   member val Pressed = false with get, set
@@ -16,6 +17,12 @@ type Button(game : Game, text : string) =
   override this.Width = this.Image.Width
   override this.Height = this.Image.Height
   member this.Click = clickEvent.Publish
+  
+  override this.Center
+    with get () = base.Center
+    and set v =
+      stringPosition <- v - (font.MeasureString(text) / 2.0f)
+      base.Center <- v
   
   override this.Initialize () =
     let containsMouse () =
@@ -42,5 +49,5 @@ type Button(game : Game, text : string) =
   override this.Draw _ =
     spriteBatch.Begin ()
     spriteBatch.Draw (this.Image, this.Position, Color.White)
-    spriteBatch.DrawString (font, text, this.Position, Color.Black)
+    spriteBatch.DrawString (font, text, stringPosition, Color.Black)
     spriteBatch.End ()
