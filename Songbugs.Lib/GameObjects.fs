@@ -49,14 +49,3 @@ type Positional() =
     with get () = this.Position + (this.Size / 2.0f)
     and set v = this.Position <- v - (this.Size / 2.0f)
   abstract Bounds : Rectangle default this.Bounds = new Rectangle(this.Position.X |> int, this.Position.Y |> int, this.Width, this.Height)
-
-[<AllowNullLiteral>]
-type Drawable(game : Game) =
-  inherit Positional()
-  
-  let spriteBatch = new SpriteBatch(game.GraphicsDevice)
-  
-  abstract SpriteBatchDo : (SpriteBatch -> unit) -> unit default this.SpriteBatchDo func =
-    spriteBatch.Begin ()
-    func spriteBatch
-    spriteBatch.End ()
