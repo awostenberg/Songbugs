@@ -3,9 +3,8 @@ open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
 
 type Button(game : Game, text : string) =
-  inherit Positional()
+  inherit Drawable(game)
   
-  let spriteBatch = new SpriteBatch(game.GraphicsDevice)
   let mutable i_normal : Texture2D = null
   let mutable i_pressed : Texture2D = null
   let mutable font : SpriteFont = null
@@ -47,7 +46,6 @@ type Button(game : Game, text : string) =
     font <- game.Content.Load "Consolas"
   
   override this.Draw _ =
-    spriteBatch.Begin ()
-    spriteBatch.Draw (this.Image, this.Position, Color.White)
-    spriteBatch.DrawString (font, text, stringPosition, Color.Black)
-    spriteBatch.End ()
+    this.SpriteBatchDo (fun spriteBatch ->
+      spriteBatch.Draw (this.Image, this.Position, Color.White)
+      spriteBatch.DrawString (font, text, stringPosition, Color.Black))
