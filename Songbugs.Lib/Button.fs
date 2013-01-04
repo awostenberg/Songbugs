@@ -2,12 +2,13 @@ namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
 
-type Button(game : Game) =
+type Button(game : Game, text : string) =
   inherit Positional()
   
   let spriteBatch = new SpriteBatch(game.GraphicsDevice)
   let mutable i_normal : Texture2D = null
   let mutable i_pressed : Texture2D = null
+  let mutable font : SpriteFont = null
   let clickEvent = new Event<_> ()
   
   member val Pressed = false with get, set
@@ -36,8 +37,10 @@ type Button(game : Game) =
     // Load two images: the image to draw when the button is not pressed (i_normal = b_normal.png) and the image for when the button _is_ pressed (i_pressed = b_pressed)
     i_normal <- game.Content.Load "b_normal.png"
     i_pressed <- game.Content.Load "b_pressed.png"
+    font <- game.Content.Load "Consolas"
   
   override this.Draw _ =
     spriteBatch.Begin ()
     spriteBatch.Draw (this.Image, this.Position, Color.White)
+    spriteBatch.DrawString (font, text, this.Position, Color.Black)
     spriteBatch.End ()

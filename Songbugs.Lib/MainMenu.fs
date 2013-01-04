@@ -8,7 +8,7 @@ type MainMenu(game, size : Vector2) =
   let alignment = new Alignment(1, 3, Vector2.Zero)
   
   override this.Initialize () =
-    let b = new Button(game)
+    let b = new Button(game, "PLAY")
     b.Click.Add (fun () -> game.CurrentScreen <- 1 (* 1 is the main game*))
     alignment.[0, 0] <- new TitleImage(game)
     alignment.[0, 2] <- b
