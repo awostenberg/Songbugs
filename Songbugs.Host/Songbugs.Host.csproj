@@ -94,4 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Info.plist" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Media\p_left.png" />
+    <None Include="Media\p_right.png" />
+    <None Include="Media\p_chunk.png" />
+  </ItemGroup>
 </Project>
