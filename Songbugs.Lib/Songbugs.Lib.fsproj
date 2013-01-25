@@ -18,12 +18,12 @@
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
         <String>StateBasedGame.fs</String>
-        <String>Game.fs</String>
         <String>GUI/TitleImage.fs</String>
         <String>GUI/Button.fs</String>
         <String>GUI/Palette.fs</String>
-        <String>Screens/MainMenu.fs</String>
         <String>Screens/Board.fs</String>
+        <String>Screens/MainMenu.fs</String>
+        <String>Game.fs</String>
       </BuildOrder>
     </BuildOrder>
   </PropertyGroup>
@@ -65,7 +65,6 @@
     <Compile Include="MiscOps.fs" />
     <Compile Include="StateBasedGame.fs" />
     <Compile Include="GameObjects.fs" />
-    <Compile Include="GUI\Palette.fs" />
     <Compile Include="GUI\Button.fs" />
     <Compile Include="Screens\Board.fs">
       <DependentUpon>Board.fs</DependentUpon>
@@ -74,6 +73,7 @@
     <Compile Include="GUI\TitleImage.fs" />
     <Compile Include="Event\EventManager.fs" />
     <Compile Include="Event\MouseButtons.fs" />
+    <Compile Include="GUI\Palette.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
@@ -81,5 +81,6 @@
     <Folder Include="GUI\" />
     <Folder Include="Screens\" />
     <Folder Include="Event\" />
+    <Folder Include="GUI\Palette\" />
   </ItemGroup>
 </Project>
