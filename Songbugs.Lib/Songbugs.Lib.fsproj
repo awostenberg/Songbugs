@@ -11,19 +11,19 @@
     <AssemblyName>Songbugs.Lib</AssemblyName>
     <BuildOrder>
       <BuildOrder>
-        <String>MouseButtons.fs</String>
+        <String>Properties/AssemblyInfo.fs</String>
         <String>MiscOps.fs</String>
-        <String>EventManager.fs</String>
+        <String>Event/MouseButtons.fs</String>
+        <String>Event/EventManager.fs</String>
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
-        <String>Button.fs</String>
-        <String>TitleImage.fs</String>
         <String>StateBasedGame.fs</String>
-        <String>MainMenu.fs</String>
-        <String>Palette.fs</String>
-        <String>Board.fs</String>
         <String>Game.fs</String>
-        <String>Properties/AssemblyInfo.fs</String>
+        <String>GUI/TitleImage.fs</String>
+        <String>GUI/Button.fs</String>
+        <String>GUI/Palette.fs</String>
+        <String>Screens/MainMenu.fs</String>
+        <String>Screens/Board.fs</String>
       </BuildOrder>
     </BuildOrder>
   </PropertyGroup>
@@ -60,21 +60,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game.fs" />
-    <Compile Include="TitleImage.fs" />
     <Compile Include="Alignment.fs" />
-    <Compile Include="Button.fs" />
-    <Compile Include="MouseButtons.fs" />
-    <Compile Include="EventManager.fs" />
     <Compile Include="Properties\AssemblyInfo.fs" />
     <Compile Include="MiscOps.fs" />
-    <Compile Include="MainMenu.fs" />
-    <Compile Include="Board.fs" />
     <Compile Include="StateBasedGame.fs" />
     <Compile Include="GameObjects.fs" />
-    <Compile Include="Palette.fs" />
+    <Compile Include="GUI\Palette.fs" />
+    <Compile Include="GUI\Button.fs" />
+    <Compile Include="Screens\Board.fs">
+      <DependentUpon>Board.fs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\MainMenu.fs" />
+    <Compile Include="GUI\TitleImage.fs" />
+    <Compile Include="Event\EventManager.fs" />
+    <Compile Include="Event\MouseButtons.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="GUI\" />
+    <Folder Include="Screens\" />
+    <Folder Include="Event\" />
   </ItemGroup>
 </Project>
