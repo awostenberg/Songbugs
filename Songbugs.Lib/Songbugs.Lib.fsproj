@@ -20,8 +20,8 @@
         <String>StateBasedGame.fs</String>
         <String>GUI/TitleImage.fs</String>
         <String>GUI/Button.fs</String>
-        <String>GUI/Palette.fs</String>
         <String>GUI/Tile.fs</String>
+        <String>GUI/Palette.fs</String>
         <String>Screens/Board.fs</String>
         <String>Screens/MainMenu.fs</String>
         <String>Game.fs</String>
