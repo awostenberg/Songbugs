@@ -1,4 +1,5 @@
 namespace Songbugs.Lib
+open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
 
 type Palette(game : Game) =
