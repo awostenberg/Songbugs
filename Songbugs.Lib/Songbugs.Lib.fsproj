@@ -81,6 +81,5 @@
     <Folder Include="GUI\" />
     <Folder Include="Screens\" />
     <Folder Include="Event\" />
-    <Folder Include="GUI\Palette\" />
   </ItemGroup>
 </Project>
