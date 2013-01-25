@@ -21,6 +21,7 @@
         <String>GUI/TitleImage.fs</String>
         <String>GUI/Button.fs</String>
         <String>GUI/Palette.fs</String>
+        <String>GUI/Tile.fs</String>
         <String>Screens/Board.fs</String>
         <String>Screens/MainMenu.fs</String>
         <String>Game.fs</String>
@@ -74,6 +75,7 @@
     <Compile Include="Event\EventManager.fs" />
     <Compile Include="Event\MouseButtons.fs" />
     <Compile Include="GUI\Palette.fs" />
+    <Compile Include="GUI\Tile.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
