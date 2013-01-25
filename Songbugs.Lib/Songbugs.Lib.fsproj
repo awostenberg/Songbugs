@@ -20,6 +20,7 @@
         <String>TitleImage.fs</String>
         <String>StateBasedGame.fs</String>
         <String>MainMenu.fs</String>
+        <String>Palette.fs</String>
         <String>Board.fs</String>
         <String>Game.fs</String>
         <String>Properties/AssemblyInfo.fs</String>
