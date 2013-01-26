@@ -1,6 +1,6 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
-open Microsoft.Xna.Framework.Input
+open Microsoft.Xna.Framework.Graphics
 open Songbugs.Lib.Input
 
 type Game() as this =
@@ -17,6 +17,7 @@ type Game() as this =
     this.IsMouseVisible <- true
     screens <- [new MainMenu(this, this.Size); new Board(this)]
     List.iter (fun (screen : GameScreen) -> screen.Initialize ()) screens
+    this.Window.AllowUserResizing <- true
     
     base.Initialize ()
   
