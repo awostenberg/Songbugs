@@ -16,6 +16,10 @@ type Palette(game : Game) =
   
   override this.Draw gameTime =
     spriteBatch.Begin ()
-    for xslot in 0..7 do
-      spriteBatch.Draw(images.[1], new Vector2(xslot * 2 * images.[1].Width |> float32, 0.0f), Color.White)
+    let pp = game.GraphicsDevice.PresentationParameters
+    let centerFocus = new Vector2(pp.BackBufferWidth / 2 |> float32, pp.BackBufferHeight |> float32)
+    let leftBounds, rightBounds = -4.5f, 2.5f
+    for xslot in leftBounds..rightBounds do
+      let offset = new Vector2(images.[1].Width / 2 |> float32, images.[1].Height * -1 |> float32) + centerFocus
+      spriteBatch.Draw(images.[1], new Vector2((images.[1].Width |> float32) * xslot, 0.0f) + offset, Color.White)
     spriteBatch.End ()
