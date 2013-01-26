@@ -12,6 +12,8 @@ type GameObject() =
   
   abstract Draw : GameTime -> unit default this.Draw _ = ()
   
+  abstract Destroy : unit -> unit default this.Destroy () = this.Finalize ()
+  
   // Operator overloads
   // Vector2 * Vector2
   
