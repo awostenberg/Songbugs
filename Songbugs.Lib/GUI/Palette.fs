@@ -18,8 +18,9 @@ type Palette(game : Game) =
     spriteBatch.Begin ()
     let pp = game.GraphicsDevice.PresentationParameters
     let centerFocus = new Vector2(pp.BackBufferWidth / 2 |> float32, pp.BackBufferHeight |> float32)
+    let i1 = images.[1]
     let leftBounds, rightBounds = -4.5f, 2.5f
     for xslot in leftBounds..rightBounds do
-      let offset = new Vector2(images.[1].Width / 2 |> float32, images.[1].Height * -1 |> float32) + centerFocus
-      spriteBatch.Draw(images.[1], new Vector2((images.[1].Width |> float32) * xslot, 0.0f) + offset, Color.White)
+      let offset = new Vector2(i1.Width / 2 |> float32, i1.Height * -1 |> float32) + centerFocus
+      spriteBatch.Draw(i1, new Vector2((i1.Width |> float32) * xslot, 0.0f) + offset, Color.White)
     spriteBatch.End ()
