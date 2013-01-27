@@ -16,6 +16,10 @@ type StateBasedGame() =
     and set v =
       currentScreen <- v
       screenChange.Trigger v
+  
+  override this.Initialize () =
+    this.CurrentScreen <- 0
+    base.Initialize ()
 
 and [<AbstractClass>] [<AllowNullLiteral>] GameScreen(game : StateBasedGame) =
   inherit GameObject()

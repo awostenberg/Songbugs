@@ -1,8 +1,9 @@
 namespace Songbugs.Lib
+open Microsoft.FSharp.Control
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
 
-type Button(game : Game, text : string) =
+type Button(game : StateBasedGame, text : string) =
   inherit Positional()
   
   let spriteBatch = new SpriteBatch(game.GraphicsDevice)
@@ -30,15 +31,32 @@ type Button(game : Game, text : string) =
       this.Bounds.Contains (new Vector2(mState.X |> float32, mState.Y |> float32))
     // Filter for the left mouse button
     let filterLeft b = b = Songbugs.Lib.Input.MouseButtons.Left
+    (*
     EventManager.MousePress
       |> Event.filter filterLeft
       |> Event.filter (fun _ -> containsMouse ())
       |> Event.add (fun _ -> this.Pressed <- true)
+    *)
+    let mbPressHandler = new Handler<Input.MouseButtons>(fun s b -> if (filterLeft b) && (containsMouse ()) then this.Pressed <- true)
+    let mbReleaseHandler = new Handler<Input.MouseButtons>(fun s b ->
+      if this.Pressed then
+        this.Pressed <- false
+        clickEvent.Trigger ())
+    game.ScreenChange.Add (fun s ->
+      if s = 0 then
+        EventManager.MousePress.AddHandler mbPressHandler
+        EventManager.MouseRelease.AddHandler mbReleaseHandler
+      else
+        EventManager.MousePress.RemoveHandler mbPressHandler
+        EventManager.MouseRelease.RemoveHandler mbReleaseHandler)
+    (*
     EventManager.MouseRelease
       |> Event.filter filterLeft
       // !! Don't proceed if the button wasn't already being pressed -- actions tied to this button will execute !!
       |> Event.filter (fun _ -> this.Pressed)
       |> Event.add (fun _ -> this.Pressed <- false; clickEvent.Trigger ())
+    *)
+    
   
   override this.LoadContent () =
     // Load two images: the image to draw when the button is not pressed (i_normal = b_normal.png) and the image for when the button _is_ pressed (i_pressed = b_pressed)
