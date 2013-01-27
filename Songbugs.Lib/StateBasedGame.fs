@@ -7,23 +7,30 @@ open Songbugs.Lib.Input
 type StateBasedGame() =
   inherit Game()
   
-  let mutable screens : GameObject [] = [||]
-  let mutable currentScreen = 0
+  let mutable screens : GameScreen [] = [||]
+  let mutable currentScreenID = 0
   let screenChange = new Event<int>()
   
   member this.ScreenChange = screenChange.Publish
   
-  abstract CurrentScreen : int with get, set
-  override this.CurrentScreen
-    with get () = currentScreen
+  abstract CurrentScreenID : int with get, set
+  override this.CurrentScreenID
+    with get () = currentScreenID
     and set v =
-      currentScreen <- v
+      currentScreenID <- v
       screenChange.Trigger v
   
+  member this.Screens
+    with get () = screens
+    and set v = screens <- v
+  
+  member this.CurrentScreen
+    with get () = this.Screens.[this.CurrentScreenID]
+  
   override this.Initialize () =
-    this.CurrentScreen <- 0
+    this.CurrentScreenID <- 0
     base.Initialize ()
-
+  
 and [<AbstractClass>] [<AllowNullLiteral>] GameScreen(game : StateBasedGame, screen) =
   inherit GameObject()
   

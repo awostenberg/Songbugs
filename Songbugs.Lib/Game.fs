@@ -6,8 +6,6 @@ open Songbugs.Lib.Input
 type Game() as this =
   inherit StateBasedGame ()
   
-  let mutable screens : GameScreen list = []
-  
   member this.Size = new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
   member val Graphics : GraphicsDeviceManager = new GraphicsDeviceManager(this) with get, set
   
@@ -15,18 +13,18 @@ type Game() as this =
     this.Content.RootDirectory <- "../Resources/Media"
     this.Graphics.IsFullScreen <- false
     this.IsMouseVisible <- true
-    screens <- [new MainMenu(this, 0, this.Size); new Board(this, 1)]
-    List.iter (fun (screen : GameScreen) -> screen.Initialize ()) screens
+    this.Screens <- [|new MainMenu(this, 0, this.Size); new Board(this, 1)|]
+    //screens <- [new MainMenu(this, 0, this.Size); new Board(this, 1)]
+    Array.iter (fun (screen : GameScreen) -> screen.Initialize ()) this.Screens
     this.Window.AllowUserResizing <- true
-    
     base.Initialize ()
   
-  override this.LoadContent () = List.iter (fun (screen : GameScreen) -> screen.LoadContent ()) screens
+  override this.LoadContent () = Array.iter (fun (screen : GameScreen) -> screen.LoadContent ()) this.Screens
   
   override this.Update gameTime =
     EventManager.update ()
-    screens.[this.CurrentScreen].Update gameTime
+    this.CurrentScreen.Update gameTime
   
   override this.Draw gameTime =
     this.GraphicsDevice.Clear Color.White
-    screens.[this.CurrentScreen].Draw gameTime
+    this.CurrentScreen.Draw gameTime
