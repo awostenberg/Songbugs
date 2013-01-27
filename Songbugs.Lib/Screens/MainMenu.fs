@@ -2,8 +2,8 @@ namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 open MiscOps
 
-type MainMenu(game, size : Vector2) =
-  inherit GameScreen(game)
+type MainMenu(game, screen, size : Vector2) =
+  inherit GameScreen(game, screen)
   
   let alignment = new Alignment(1, 3, Vector2.Zero)
   

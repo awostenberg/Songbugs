@@ -1,8 +1,8 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 
-type Board(game) =
-  inherit GameScreen(game)
+type Board(game, screen) =
+  inherit GameScreen(game, screen)
   
   let palette = new Palette(game)
   
