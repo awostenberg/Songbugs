@@ -71,9 +71,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="MonoMac" />
-    <Reference Include="Songbugs.Lib">
-      <HintPath>..\Songbugs.Lib\bin\Debug\Songbugs.Lib.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
