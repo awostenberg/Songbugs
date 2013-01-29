@@ -51,7 +51,7 @@ module EventManager =
   
   // If the given mosue button has been released (clicked), fire a MouseRelease event
   let mouseButtonReleaseAction curr old evArg (ev : _ Event) =
-    if (curr = ButtonState.Released) && (old = ButtonState.Released) then
+    if (curr = ButtonState.Released) && (old = ButtonState.Pressed) then
      ev.Trigger evArg
   
   let updateMouseButton currb oldb b =
