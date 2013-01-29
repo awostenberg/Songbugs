@@ -31,13 +31,13 @@ type Button(game : StateBasedGame, text : string) =
       this.Bounds.Contains (new Vector2(mState.X |> float32, mState.Y |> float32))
     // Filter for the left mouse button
     let filterLeft b = b = Songbugs.Lib.Input.MouseButtons.Left
-    let mbPressHandler = new Handler<Input.MouseButtons>(fun s b -> if (filterLeft b) && (containsMouse ()) then this.Pressed <- true)
-    let mbReleaseHandler = new Handler<Input.MouseButtons>(fun s b ->
+    game.CurrentScreen.MousePress.Add (fun b ->
+      if (filterLeft b) && (containsMouse ()) then
+        this.Pressed <- true)
+    game.CurrentScreen.MouseRelease.Add (fun b ->
       if this.Pressed then
         this.Pressed <- false
         clickEvent.Trigger ())
-    game.CurrentScreen.MouseDown.AddHandler mbPressHandler
-    game.CurrentScreen.MouseDown.AddHandler mbReleaseHandler
   
   override this.LoadContent () =
     // Load two images: the image to draw when the button is not pressed (i_normal = b_normal.png) and the image for when the button _is_ pressed (i_pressed = b_pressed)
