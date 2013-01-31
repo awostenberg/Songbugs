@@ -23,6 +23,8 @@ type Palette(game : Game) =
     let i0, i1, i2 = images.[0], images.[1], images.[2]
     let leftBounds, rightBounds = -3.5f, 3.5f
     let yoffset = new Vector2(0.0f, i1.Height / 2 |> float32) * -1.0f
+    spriteBatch.Draw (i0, new Vector2((i1.Width |> float32) * (leftBounds - 0.5f), 0.0f) + centerFocus + (yoffset * 2.0f) - new Vector2(i0.Width |> float32, 0.0f), Color.White)
     for xslot in leftBounds..rightBounds do
       drawCenter i1 (new Vector2((i1.Width |> float32) * xslot, 0.0f) + yoffset + centerFocus)
+    spriteBatch.Draw (i2, new Vector2((i1.Width |> float32) * (rightBounds + 0.5f), 0.0f) + centerFocus + (yoffset * 2.0f), Color.White)
     spriteBatch.End ()
