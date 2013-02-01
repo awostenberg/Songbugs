@@ -92,6 +92,7 @@
     <BundleResource Include="Media\p_chunk.png" />
     <BundleResource Include="Media\p_left.png" />
     <BundleResource Include="Media\p_right.png" />
+    <BundleResource Include="Media\tile.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Info.plist" />
