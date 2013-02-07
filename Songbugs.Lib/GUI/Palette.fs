@@ -7,7 +7,8 @@ type Palette(game : Game) =
   
   let spriteBatch = new SpriteBatch(game.GraphicsDevice)
   let mutable images : Texture2D list = []
-  let tiles = List.init 8 (fun _ -> new Tile(game, Color.Red))
+  //let tiles = List.init 8 (fun _ -> new Tile(game, "e4"))
+  let tiles = ["rest"; "c4"; "d4"; "e4"; "f4"; "g4"; "a4"; "b4"] |> List.map (fun note -> new Tile(game, note))
   let drawCenter (img : Texture2D) (pos : Vector2) =
     spriteBatch.Draw (img, pos + new Vector2(img.Width / -2 |> float32, img.Height / -2 |> float32), Color.White)
   
@@ -31,7 +32,6 @@ type Palette(game : Game) =
       drawCenter i1 pos
       let t = tiles.[xslot + 3.5f |> int]
       t.Position <- pos
-      //t.Draw gameTime
     spriteBatch.Draw (i2, new Vector2((i1.Width |> float32) * (rightBounds + 0.5f), 0.0f) + centerFocus + (yoffset * 2.0f), Color.White)
     spriteBatch.End ()
     List.iter (fun (t : Tile) -> t.Draw gameTime) tiles
