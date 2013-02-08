@@ -1,16 +1,16 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
+open Songbugs.Lib.Note
 
 type Palette(game : Game) =
   inherit Positional()
   
   let spriteBatch = new SpriteBatch(game.GraphicsDevice)
   let mutable images : Texture2D list = []
-  let tiles = ["rest"; ""; "c4"; "d4"; "e4"; "f4"; "g4"; "a4"; "b4"] |> List.map (fun note ->
-    match note with
-    | "" -> None
-    | _ -> Some (new Tile (game, note)))
+  let tiles =
+    let someTile note = Some(new Tile(game, note))
+    [Notes.Rest |> someTile; None; Notes.C4 |> someTile; Notes.D4 |> someTile; Notes.E4 |> someTile; Notes.F4 |> someTile; Notes.G4 |> someTile; Notes.A4 |> someTile; Notes.B4 |> someTile]
   let drawCenter (img : Texture2D) (pos : Vector2) =
     spriteBatch.Draw (img, pos + new Vector2(img.Width / -2 |> float32, img.Height / -2 |> float32), Color.White)
   // Only execute the action with the tile if it is not a None value
