@@ -18,6 +18,7 @@
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
         <String>StateBasedGame.fs</String>
+        <String>Cursor.fs</String>
         <String>Note.fs</String>
         <String>GUI/TitleImage.fs</String>
         <String>GUI/Button.fs</String>
@@ -79,6 +80,7 @@
     <Compile Include="GUI\Palette.fs" />
     <Compile Include="GUI\Tile.fs" />
     <Compile Include="Note.fs" />
+    <Compile Include="Cursor.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
