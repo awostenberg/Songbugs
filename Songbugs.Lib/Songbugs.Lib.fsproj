@@ -18,6 +18,7 @@
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
         <String>StateBasedGame.fs</String>
+        <String>Notes.fs</String>
         <String>GUI/TitleImage.fs</String>
         <String>GUI/Button.fs</String>
         <String>GUI/Tile.fs</String>
