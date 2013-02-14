@@ -14,7 +14,6 @@ type Game() as this =
     this.Graphics.IsFullScreen <- false
     this.IsMouseVisible <- true
     this.Screens <- [|new MainMenu(this, 0, this.Size); new Board(this, 1)|]
-    //screens <- [new MainMenu(this, 0, this.Size); new Board(this, 1)]
     Array.iter (fun (screen : GameScreen) -> screen.Initialize ()) this.Screens
     this.Window.AllowUserResizing <- true
     base.Initialize ()
