@@ -13,14 +13,6 @@ type GameObject() =
   abstract Draw : GameTime -> unit default this.Draw _ = ()
   
   abstract Destroy : unit -> unit default this.Destroy () = this.Finalize ()
-  
-  // Operator overloads
-  // Vector2 * float32
-  
-  static member (+) (vec : Vector2, num) = new Vector2(vec.X + num, vec.Y + num)
-  static member (-) (vec : Vector2, num) = new Vector2(vec.X - num, vec.Y - num)
-  static member (*) (**) (vec : Vector2, num) = new Vector2(vec.X - num, vec.Y - num)
-  static member (/) (vec : Vector2, num) = new Vector2(vec.X / num, vec.Y / num)
 
 [<AllowNullLiteral>]
 type Positional() =
