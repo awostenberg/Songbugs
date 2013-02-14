@@ -18,7 +18,6 @@
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
         <String>StateBasedGame.fs</String>
-        <String>Cursor.fs</String>
         <String>Note.fs</String>
         <String>GUI/TitleImage.fs</String>
         <String>GUI/Button.fs</String>

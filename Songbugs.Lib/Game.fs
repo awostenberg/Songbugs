@@ -1,10 +1,14 @@
 namespace Songbugs.Lib
 open Microsoft.Xna.Framework
+open Microsoft.Xna.Framework.Input
 open Microsoft.Xna.Framework.Graphics
 open Songbugs.Lib.Input
 
 type Game() as this =
   inherit StateBasedGame ()
+  
+  let mutable oldKeybState = Keyboard.GetState ()
+  let mutable oldMouseState = Mouse.GetState ()
   
   member this.Size = new Vector2(this.Graphics.PreferredBackBufferWidth |> float32, this.Graphics.PreferredBackBufferHeight |> float32)
   member val Graphics : GraphicsDeviceManager = new GraphicsDeviceManager(this) with get, set
@@ -21,7 +25,10 @@ type Game() as this =
   override this.LoadContent () = Array.iter (fun (screen : GameScreen) -> screen.LoadContent ()) this.Screens
   
   override this.Update gameTime =
-    EventManager.update ()
+    let keybState, mouseState = Keyboard.GetState (), Mouse.GetState ()
+    EventManager.update oldKeybState oldMouseState keybState mouseState
+    oldKeybState <- keybState
+    oldMouseState <- mouseState
     this.CurrentScreen.Update gameTime
   
   override this.Draw gameTime =

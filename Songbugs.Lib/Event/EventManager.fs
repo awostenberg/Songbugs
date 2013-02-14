@@ -6,10 +6,6 @@ open Songbugs.Lib.Input
 open MiscOps
 
 module EventManager =
-  
-  let mutable private oldKeybState = Keyboard.GetState ()
-  let mutable private oldMouseState = Mouse.GetState ()
-  
   let private keyPress = new Event<Keys>()
   let private keyDown = new Event<Keys>()
   let private keyRelease = new Event<Keys>()
@@ -59,9 +55,7 @@ module EventManager =
     mouseButtonDownAction currb b mouseDown
     mouseButtonReleaseAction currb oldb b mouseRelease
   
-  let updateKeyboardEvents () =
-    let keybState = Keyboard.GetState ()
-    
+  let updateKeyboardEvents (oldKeybState : KeyboardState) (keybState : KeyboardState) =
     // Iterate over every key
     for k in Enum.GetValues typeof<Keys> do
       // Unbox it to a value of Keys
@@ -70,23 +64,19 @@ module EventManager =
       keyPressAction keybState oldKeybState key keyPress
       keyDownAction keybState key keyDown
       keyReleaseAction keybState oldKeybState key keyRelease
-    
-    oldKeybState <- keybState
   
-  let updateMouseEvents () =
-    let mouseState = Mouse.GetState ()
-    
+  let updateMouseEvents (oldMouseState : MouseState) (mouseState : MouseState) =
     for mb in ["left"; "middle"; "right"] do
       let short = (cap mb)
       let long = short + "Button"
+      // Use some fancy reflection to get the mouse button info and pass it to updateMouseButton
       updateMouseButton (unbox ((?) mouseState long ())) (unbox ((?) oldMouseState long ())) (getEnumValue<MouseButtons> short)
     
+    // Some exceptions where the names don't apply to the above formula (for lack of a better term)
     updateMouseButton mouseState.XButton1 oldMouseState.XButton1 MouseButtons.X1
     updateMouseButton mouseState.XButton2 oldMouseState.XButton2 MouseButtons.X2
-    
-    oldMouseState <- mouseState
   
   // Keep those events flowing.
-  let update () =
-    updateKeyboardEvents ()
-    updateMouseEvents ()
+  let update oldKeybState oldMouseState keybState mouseState =
+    updateKeyboardEvents oldKeybState keybState
+    updateMouseEvents oldMouseState mouseState
