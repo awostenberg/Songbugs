@@ -75,10 +75,10 @@
     <Compile Include="Screens\MainMenu.fs" />
     <Compile Include="GUI\TitleImage.fs" />
     <Compile Include="Event\EventManager.fs" />
-    <Compile Include="Event\MouseButtons.fs" />
     <Compile Include="GUI\Palette.fs" />
     <Compile Include="GUI\Tile.fs" />
     <Compile Include="Note.fs" />
+    <Compile Include="Event\Input\MouseButtons.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
@@ -86,5 +86,6 @@
     <Folder Include="GUI\" />
     <Folder Include="Screens\" />
     <Folder Include="Event\" />
+    <Folder Include="Event\Input\" />
   </ItemGroup>
 </Project>
