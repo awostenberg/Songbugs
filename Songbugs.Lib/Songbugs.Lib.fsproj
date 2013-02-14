@@ -13,7 +13,7 @@
       <BuildOrder>
         <String>Properties/AssemblyInfo.fs</String>
         <String>MiscOps.fs</String>
-        <String>Event/MouseButtons.fs</String>
+        <String>Event/Input/MouseButtons.fs</String>
         <String>Event/EventManager.fs</String>
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
