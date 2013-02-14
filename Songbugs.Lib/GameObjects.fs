@@ -15,13 +15,6 @@ type GameObject() =
   abstract Destroy : unit -> unit default this.Destroy () = this.Finalize ()
   
   // Operator overloads
-  // Vector2 * Vector2
-  
-  static member (+) (v1 : Vector2, v2 : Vector2) = new Vector2(v1.X + v2.X, v1.Y + v2.Y)
-  static member (-) (v1 : Vector2, v2 : Vector2) = new Vector2(v1.X - v2.X, v1.Y - v2.Y)
-  static member (*) (**) (v1 : Vector2, v2 : Vector2) = new Vector2(v1.X * v2.X, v1.Y * v2.Y)
-  static member (/) (v1 : Vector2, v2 : Vector2) = new Vector2(v1.X / v2.X, v1.Y / v2.Y)
-  
   // Vector2 * float32
   
   static member (+) (vec : Vector2, num) = new Vector2(vec.X + num, vec.Y + num)
