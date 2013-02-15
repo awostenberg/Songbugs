@@ -12,7 +12,7 @@ module EventManager =
   let private mousePress = new Event<MouseButtons>()
   let private mouseDown = new Event<MouseButtons>()
   let private mouseRelease = new Event<MouseButtons>()
-  let private mouseDrag = new Event<MouseButtons * Vector2 * Vector2>()
+  let private mouseDrag = new Event<Vector2 * Vector2>()
   let private mouseMove = new Event<Vector2 * Vector2>()
   
   let KeyPress = keyPress.Publish
@@ -81,24 +81,12 @@ module EventManager =
     updateMouseButton mouseState.XButton2 oldMouseState.XButton2 MouseButtons.X2
   
   let updateMouseMoveEvents (oldMouseState : MouseState) (mouseState : MouseState) =
-    let oldMousePos, mousePos = new Vector2(oldMouseState.X |> float32, oldMouseState.Y |> float32), new Vector2(mouseState.X |> float32, mouseState.Y |> float32)
-    let olb, omb, orb, lb, mb, rb =
-      oldMouseState.LeftButton, oldMouseState.MiddleButton, oldMouseState.RightButton, mouseState.LeftButton, mouseState.MiddleButton, mouseState.RightButton
-    if not (oldMousePos.Equals mousePos) then
+    let args = new Vector2(oldMouseState.X |> float32, oldMouseState.Y |> float32), new Vector2(mouseState.X |> float32, mouseState.Y |> float32)
+    let olb, lb = oldMouseState.LeftButton, mouseState.LeftButton
+    if not ((fst args).Equals (snd args)) then
       match (olb, lb) with
-      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger (MouseButtons.Left, oldMousePos, mousePos)
-      | ButtonState.Released, ButtonState.Released -> mouseMove.Trigger (oldMousePos, mousePos)
-      | _ -> ()
-      
-      match (omb, mb) with
-      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger (MouseButtons.Middle, oldMousePos, mousePos)
-      | ButtonState.Released, ButtonState.Released -> mouseMove.Trigger (oldMousePos, mousePos)
-      | _ -> ()
-      
-      match (orb, rb) with
-      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger (MouseButtons.Right, oldMousePos, mousePos)
-      | ButtonState.Released, ButtonState.Released -> mouseMove.Trigger (oldMousePos, mousePos)
-      | _ -> ()
+      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger args
+      | _ -> mouseMove.Trigger args
   
   // Keep those events flowing.
   [<CompiledName("Update")>]
