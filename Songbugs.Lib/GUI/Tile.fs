@@ -1,7 +1,8 @@
-namespace Songbugs.Lib
+namespace Songbugs.Lib.GUI
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
 open Microsoft.Xna.Framework.Input
+open Songbugs.Lib
 open Songbugs.Lib.Note
 
 type Tile (game : Game, note) =

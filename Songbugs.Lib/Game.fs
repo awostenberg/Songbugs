@@ -2,6 +2,8 @@ namespace Songbugs.Lib
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Input
 open Microsoft.Xna.Framework.Graphics
+open Songbugs.Lib.Screens
+open Songbugs.Lib.Event
 open Songbugs.Lib.Input
 
 type Game() as this =

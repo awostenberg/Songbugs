@@ -2,6 +2,7 @@ namespace Songbugs.Lib
 open Microsoft.FSharp.Control
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Input
+open Songbugs.Lib.Event
 open Songbugs.Lib.Input
 
 type StateBasedGame() =

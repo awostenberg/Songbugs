@@ -1,6 +1,7 @@
-namespace Songbugs.Lib
+namespace Songbugs.Lib.GUI
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
+open Songbugs.Lib
 open Songbugs.Lib.Note
 
 type Palette(game : Game) =

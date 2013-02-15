@@ -1,9 +1,9 @@
-namespace Songbugs.Lib
+namespace Songbugs.Lib.Event
 open System
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Input
 open Songbugs.Lib.Input
-open MiscOps
+open Songbugs.Lib.MiscOps
 
 module EventManager =
   let private keyPress = new Event<Keys>()

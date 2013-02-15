@@ -1,7 +1,8 @@
-namespace Songbugs.Lib
+namespace Songbugs.Lib.GUI
 open Microsoft.FSharp.Control
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
+open Songbugs.Lib
 
 type Button(game : StateBasedGame, text : string) =
   inherit Positional()

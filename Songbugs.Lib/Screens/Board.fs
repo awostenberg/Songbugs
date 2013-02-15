@@ -1,5 +1,7 @@
-namespace Songbugs.Lib
+namespace Songbugs.Lib.Screens
 open Microsoft.Xna.Framework
+open Songbugs.Lib
+open Songbugs.Lib.GUI
 
 type Board(game, screen) =
   inherit GameScreen(game, screen)

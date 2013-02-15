@@ -1,7 +1,8 @@
-namespace Songbugs.Lib
+namespace Songbugs.Lib.GUI
 open System
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
+open Songbugs.Lib
 
 type TitleImage(game : Game) =
   inherit Positional()
