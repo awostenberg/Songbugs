@@ -13,7 +13,7 @@
       <BuildOrder>
         <String>Properties/AssemblyInfo.fs</String>
         <String>MiscOps.fs</String>
-        <String>Event/Input/MouseButtons.fs</String>
+        <String>Input/MouseButtons.fs</String>
         <String>Event/EventManager.fs</String>
         <String>GameObjects.fs</String>
         <String>Alignment.fs</String>
@@ -78,7 +78,7 @@
     <Compile Include="GUI\Palette.fs" />
     <Compile Include="GUI\Tile.fs" />
     <Compile Include="Note.fs" />
-    <Compile Include="Event\Input\MouseButtons.fs" />
+    <Compile Include="Input\MouseButtons.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft F#\v4.0\Microsoft.FSharp.Targets" />
   <ItemGroup>
@@ -86,6 +86,5 @@
     <Folder Include="GUI\" />
     <Folder Include="Screens\" />
     <Folder Include="Event\" />
-    <Folder Include="Event\Input\" />
   </ItemGroup>
 </Project>
