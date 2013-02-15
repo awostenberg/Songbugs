@@ -1,4 +1,4 @@
-namespace Songbugs.Lib.Screens
+namespace Songbugs.Lib.GUI.Screens
 open Microsoft.Xna.Framework
 open Songbugs.Lib
 open Songbugs.Lib.GUI
