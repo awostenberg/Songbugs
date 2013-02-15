@@ -12,6 +12,8 @@ module EventManager =
   let private mousePress = new Event<MouseButtons>()
   let private mouseDown = new Event<MouseButtons>()
   let private mouseRelease = new Event<MouseButtons>()
+  let private mouseDrag = new Event<MouseButtons * Vector2 * Vector2>()
+  let private mouseMove = new Event<Vector2 * Vector2>()
   
   let KeyPress = keyPress.Publish
   let KeyDown = keyDown.Publish
@@ -19,6 +21,8 @@ module EventManager =
   let MousePress = mousePress.Publish
   let MouseDown = mouseDown.Publish
   let MouseRelease = mouseRelease.Publish
+  let MouseDrag = mouseDrag.Publish
+  let MouseMove = mouseMove.Publish
   
   // If the given key has been pressed, fire a KeyPress event
   let keyPressAction (curr : KeyboardState) (old : KeyboardState) k (ev : _ Event) =
@@ -76,7 +80,29 @@ module EventManager =
     updateMouseButton mouseState.XButton1 oldMouseState.XButton1 MouseButtons.X1
     updateMouseButton mouseState.XButton2 oldMouseState.XButton2 MouseButtons.X2
   
+  let updateMouseMoveEvents (oldMouseState : MouseState) (mouseState : MouseState) =
+    let oldMousePos, mousePos = new Vector2(oldMouseState.X |> float32, oldMouseState.Y |> float32), new Vector2(mouseState.X |> float32, mouseState.Y |> float32)
+    let olb, omb, orb, lb, mb, rb =
+      oldMouseState.LeftButton, oldMouseState.MiddleButton, oldMouseState.RightButton, mouseState.LeftButton, mouseState.MiddleButton, mouseState.RightButton
+    if not (oldMousePos.Equals mousePos) then
+      match (olb, lb) with
+      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger (MouseButtons.Left, oldMousePos, mousePos)
+      | ButtonState.Released, ButtonState.Released -> mouseMove.Trigger (oldMousePos, mousePos)
+      | _ -> ()
+      
+      match (omb, mb) with
+      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger (MouseButtons.Middle, oldMousePos, mousePos)
+      | ButtonState.Released, ButtonState.Released -> mouseMove.Trigger (oldMousePos, mousePos)
+      | _ -> ()
+      
+      match (orb, rb) with
+      | ButtonState.Pressed, ButtonState.Pressed -> mouseDrag.Trigger (MouseButtons.Right, oldMousePos, mousePos)
+      | ButtonState.Released, ButtonState.Released -> mouseMove.Trigger (oldMousePos, mousePos)
+      | _ -> ()
+  
   // Keep those events flowing.
+  [<CompiledName("Update")>]
   let update oldKeybState oldMouseState keybState mouseState =
     updateKeyboardEvents oldKeybState keybState
     updateMouseEvents oldMouseState mouseState
+    updateMouseMoveEvents oldMouseState mouseState
