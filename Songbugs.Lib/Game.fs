@@ -20,8 +20,6 @@ type Game() as this =
     this.Screens <- [|new MainMenu(this, 0, this.Size); new Board(this, 1)|]
     Array.iter (fun (screen : GameScreen) -> screen.Initialize ()) this.Screens
     this.Window.AllowUserResizing <- true
-    EventManager.MouseDrag.Add (fun (mb, oldPos, pos) -> printfn "Mouse %A dragged from: \n%A \n\tto: %A\t" mb oldPos pos)
-    EventManager.MouseMove.Add (fun (oldPos, pos) -> printfn "Mouse moved from: \n%A \n\tto: %A\t" oldPos pos)
     base.Initialize ()
   
   override this.LoadContent () = Array.iter (fun (screen : GameScreen) -> screen.LoadContent ()) this.Screens
